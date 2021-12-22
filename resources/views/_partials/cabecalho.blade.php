@@ -54,6 +54,10 @@
                                 class="u-button-style u-nav-link u-text-active-palette-1-base u-text-hover-palette-2-base"
                                 href="{{route('pagamento')}}" style="padding: 22px 20px;">Pagamento</a>
                         </li>
+                        <li class="u-nav-item"><a
+                                class="u-button-style u-nav-link u-text-active-palette-1-base u-text-hover-palette-2-base"
+                                href="{{route('dado')}}" style="padding: 22px 20px;">Dados</a>
+                        </li>
                     </ul>
                 </div>
                 <div class="u-custom-menu u-nav-container-collapse">

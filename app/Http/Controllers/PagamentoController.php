@@ -48,7 +48,7 @@ class PagamentoController extends Controller
 
         $p->save();
         echo '<script>alert("Salvo")</script>';
-        return view('telas.Principal');
+        return redirect()->route('principal');
       
     }
 
