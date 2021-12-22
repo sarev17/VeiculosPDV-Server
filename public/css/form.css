@@ -1,0 +1,89 @@
+
+.entrada{
+    text-transform: uppercase;
+    background-color: rgb(238, 235, 235);
+}
+
+.entrada-sg{
+    width: 650px;
+}
+.entrada-p{
+    width: 130px;
+}
+
+.entrada-m{
+    width: 169px;
+}
+
+.entrada-g{
+  width: 300px;
+}
+
+
+.label-float{
+    position: relative;
+    padding-top: 20px;
+  }
+  
+  .label-float input{
+    
+    outline: none;
+    padding: 5px 20px;
+    font-size: 18px;
+    transition: all .1s linear;
+    -webkit-transition: all .1s linear;
+    -moz-transition: all .1s linear;
+    -webkit-appearance:none;
+  }
+  
+  .label-float input:focus{
+    border: 1px solid #3951b2;
+  }
+  
+  .label-float input::placeholder{
+    color:transparent;
+  }
+  
+  .label-float label{
+    pointer-events: none;
+    position: absolute;
+    top: calc(50% - 8px);
+    left: 35px;
+    transition: all .1s linear;
+    -webkit-transition: all .1s linear;
+    -moz-transition: all .1s linear;
+    
+    padding: 1px;
+    box-sizing: border-box;
+  }
+  
+  .label-float input:required:invalid + label{
+    color: black;
+  }
+  .label-float input:focus:required:invalid{
+    border: 1px solid red;
+  }
+  .label-float input:required:invalid + label:before{
+    content: '*';
+  }
+  .label-float input:focus + label,
+  .label-float input:not(:placeholder-shown) + label{
+    font-size: 13px;
+    top: 0;
+    color: #021d86;
+  }
+
+
+  .row{
+      display: inline-block;
+      padding-left: 30px;      
+  }
+
+  select{
+      height: 40px;
+  }
+  textarea{
+      width: 660px;
+      background-color: rgb(238, 235, 235);
+      padding: 20px;
+  }
