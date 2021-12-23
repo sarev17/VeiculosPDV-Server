@@ -16,7 +16,7 @@ class PDFController extends Controller
         $hojeF = date('Y-m-d') . " 23:59:59";
         $mesI = date('Y-m') . '-01 00:00:00';
         $pagamentos = Pagamento::where('updated_at', '>', $hojeI)->where('updated_at', '<', $hojeF)->get();
-        
+        $html='';
 
         $html = '<!DOCTYPE html>
         <html lang="en">
@@ -65,7 +65,7 @@ class PDFController extends Controller
                 <tbody>
                   <tr>
                     <th colspan="3" scope="col">Total</th>
-                    <th  scope="col">R$ '.number_format(Pagamento::get()->sum('total'),2,',','.').'</th>      
+                    <th  scope="col">R$ '.number_format(Pagamento::where('updated_at','>',$hojeI)->where('updated_at','<',$hojeF)->sum('total'),2,',','.').'</th>      
                   </tr>
                 </tbody>
             </div>
@@ -81,4 +81,5 @@ class PDFController extends Controller
         return $pdf->stream();
         
     }
+
 }

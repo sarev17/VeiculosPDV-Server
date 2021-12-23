@@ -90,9 +90,8 @@ Route::prefix('dados')->group(function () {
 
 Route::prefix('PDF')->group(function(){
     Route::get('diaE',[PDFController::class,'diaE'])->name('pdf.diaE');
-    /*Route::get('diaE', function () {
-        return view('tabela');
-    })->name('pdf.diaE');*/
+    Route::get('MesE',[PDFController::class,'mesE'])->name('pdf.mesaE');
+    
 });
 
 
