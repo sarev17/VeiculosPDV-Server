@@ -39,7 +39,7 @@ class VendaController extends Controller
         $venda->renavam = $request->renavam;
         $venda->fabricacao = $request->fabricacao;
         $venda->obs = $request->obs;
-        $venda->update_at = date('Y-m-d H:i:s');
+        $venda->updated_at = date('Y-m-d H:i:s');
         $venda->created_at = date('Y-m-d H:i:s');
         ///*
         $venda->save();

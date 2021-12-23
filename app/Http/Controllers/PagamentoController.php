@@ -37,7 +37,7 @@ class PagamentoController extends Controller
         $p->referencia = $ref;
         $p->total =$total;
         $p->venda_id = $r->idv;
-        $p->update_at = date('Y-m-d H:i:s');
+        $p->updated_at = date('Y-m-d H:i:s');
         $p->created_at = date('Y-m-d H:i:s');
 
         

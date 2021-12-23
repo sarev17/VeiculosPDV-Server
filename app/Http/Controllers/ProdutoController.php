@@ -65,7 +65,7 @@ class ProdutoController extends Controller
             'compra' => floatval(preg_replace("/[^0-9]/", "", $request->compra)) / 100,
             'venda' => floatval(preg_replace("/[^0-9]/", "", $request->venda)) / 100,
             'obs' => $request->obs,
-            'update_at'=> date('Y-m-d H:i:s')
+            'updated_at'=> date('Y-m-d H:i:s')
         ]);
 
 
