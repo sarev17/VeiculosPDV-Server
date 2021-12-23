@@ -4,6 +4,9 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProdutoController;
 use App\Http\Controllers\VendaController;
 use App\Http\Controllers\PagamentoController;
+use App\Http\Controllers\PDFController;
+use Illuminate\Routing\RouteGroup;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -84,4 +87,12 @@ Route::prefix('dados')->group(function () {
         return view('telas.editar_veiculo');
     })->name('editar_veiculo');
 });
+
+Route::prefix('PDF')->group(function(){
+    Route::get('diaE',[PDFController::class,'diaE'])->name('pdf.diaE');
+    /*Route::get('diaE', function () {
+        return view('tabela');
+    })->name('pdf.diaE');*/
+});
+
 

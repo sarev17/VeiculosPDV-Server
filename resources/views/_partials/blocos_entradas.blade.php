@@ -22,9 +22,10 @@ $mesI = date('Y-m').'-01 00:00:00';
                 <h3 class="u-align-center u-text u-text-1">{{ $hoje }}</h3>
                 <br>
                 <h4 class="u-text u-text-2">Entradas: {{Pagamento::get()->where('updated_at','>',$hojeI)->where('updated_at','<',$hojeF)->count()}}</h4>
-                <h4 class="u-text u-text-3">Recebido: R$ {{number_format(Pagamento::where('updated_at','>',$hojeI)->where('updated_at','<',$hojeF)->select('total')->sum('total'),2,',','.')}}</h4><span
+                <h4 class="u-text u-text-3">Recebido: R$ {{number_format(Pagamento::where('updated_at','>',$hojeI)->where('updated_at','<',$hojeF)->select('total')->sum('total'),2,',','.')}}</h4>
+                <a href="{{route('pdf.diaE')}}"><span
                     class="u-file-icon u-icon u-icon-rounded u-palette-4-dark-2 u-spacing-10 u-text-white u-icon-1"><img
-                        src="{{ asset('images/pdf.png') }}" alt=""></span>
+                        src="{{ asset('images/pdf.png') }}" alt=""></span></a>
             </div>
         </div>
         <div class="u-container-style u-group u-palette-4-dark-2 u-shape-rectangle u-group-2">
@@ -32,7 +33,7 @@ $mesI = date('Y-m').'-01 00:00:00';
                 <h3 class="u-align-center u-text u-text-4">{{ $mes[$numero_mes] . ' de ' . $ano }}</h3>
                 <br>
                 <h4 class="u-text u-text-5">Entradas: {{Pagamento::where('updated_at','>',$mesI)->where('updated_at','<',$hojeF)->count()}} </h4>
-                <h4 class="u-text u-text-6">Recebido: R$ 100.223,00</h4><span
+                <h4 class="u-text u-text-6">Recebido: R$ {{number_format(Pagamento::where('updated_at','>',$mesI)->where('updated_at','<',$hojeF)->sum('total'),2,',','.')}}</h4><span
                     class="u-file-icon u-icon u-icon-rounded u-palette-4-dark-2 u-spacing-10 u-text-white u-icon-2"><img
                         src="{{ asset('images/pdf.png') }}" alt=""></span>
             </div>
