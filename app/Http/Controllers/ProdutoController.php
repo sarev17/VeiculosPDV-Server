@@ -27,7 +27,7 @@ class ProdutoController extends Controller
             $veiculo->compra = floatval(preg_replace("/[^0-9]/", "", $request->compra)) / 100;
             $veiculo->venda = floatval(preg_replace("/[^0-9]/", "", $request->venda)) / 100;
             $veiculo->obs = $request->obs;
-            $veiculo->update_at = date('Y-m-d H:i:s');
+            $veiculo->updated_at = date('Y-m-d H:i:s');
             $veiculo->created_at = date('Y-m-d H:i:s');
 
             echo "<script>alert('Salvo com sucesso')</script>";
@@ -67,8 +67,6 @@ class ProdutoController extends Controller
             'obs' => $request->obs,
             'updated_at'=> date('Y-m-d H:i:s')
         ]);
-
-
 
         return redirect()->route('veiculos');
     }
