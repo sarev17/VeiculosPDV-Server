@@ -31,6 +31,7 @@ class UserFactory extends Factory
     public function unverified()
     {
         return $this->state(function (array $attributes) {
+            date_default_timezone_set ("America/Sao_Paulo");
             return [
                 'email_verified_at' => null,
             ];

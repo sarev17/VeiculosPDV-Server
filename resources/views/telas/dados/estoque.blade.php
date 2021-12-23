@@ -4,6 +4,7 @@
     @include('_partials.cabecalho')
     <!-- DataTales Example -->
     <h3 style="text-align:center;padding-top:30px">Consulta Estoque</h3>
+    @include('_partials.blocos_estoque')
     <div class="card shadow mb-4">
         <div class="card-body">
             <div class="table-responsive">

@@ -10,6 +10,7 @@ class ProdutoController extends Controller
 {
     public function store(Request $request)
     {
+        date_default_timezone_set ("America/Sao_Paulo");
         $veiculo = new Veiculo;
 
         if (sizeof(Veiculo::where('placa', $request->placa)->get())) {
@@ -26,6 +27,8 @@ class ProdutoController extends Controller
             $veiculo->compra = floatval(preg_replace("/[^0-9]/", "", $request->compra)) / 100;
             $veiculo->venda = floatval(preg_replace("/[^0-9]/", "", $request->venda)) / 100;
             $veiculo->obs = $request->obs;
+            $veiculo->update_at = date('Y-m-d H:i:s');
+            $veiculo->created_at = date('Y-m-d H:i:s');
 
             echo "<script>alert('Salvo com sucesso')</script>";
             $veiculo->save();
@@ -48,9 +51,10 @@ class ProdutoController extends Controller
     public function edit(Request $request, Veiculo $veiculo)
     {
 
-        Veiculo::where('placa','=',$request->placa)->update([
+        date_default_timezone_set ("America/Sao_Paulo");
+        Veiculo::where('placa', '=', $request->placa)->update([
 
-           'placa' => $request->placa,
+            'placa' => $request->placa,
             'produto' => $request->produto,
             'modelo' => $request->modelo,
             'marca' => $request->marca,
@@ -60,10 +64,11 @@ class ProdutoController extends Controller
             'fabricacao' => $request->fabricacao,
             'compra' => floatval(preg_replace("/[^0-9]/", "", $request->compra)) / 100,
             'venda' => floatval(preg_replace("/[^0-9]/", "", $request->venda)) / 100,
-            'obs' => $request->obs
+            'obs' => $request->obs,
+            'update_at'=> date('Y-m-d H:i:s')
         ]);
 
-        
+
 
         return redirect()->route('veiculos');
     }

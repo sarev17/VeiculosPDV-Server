@@ -11,6 +11,7 @@ class VendaController extends Controller
 {
     public function store(Request $request)
     {
+        date_default_timezone_set("America/Sao_Paulo");
         $venda = new Venda;
 
         $id_veiculo = array(Veiculo::where('placa', $request->placa)->select('id')->get());
@@ -38,23 +39,24 @@ class VendaController extends Controller
         $venda->renavam = $request->renavam;
         $venda->fabricacao = $request->fabricacao;
         $venda->obs = $request->obs;
+        $venda->update_at = date('Y-m-d H:i:s');
+        $venda->created_at = date('Y-m-d H:i:s');
         ///*
         $venda->save();
 
         //registrando pagamento da entrada
-        $venda_id = Venda::where('placa',$request->placa)->select('id')->get();
+        $venda_id = Venda::where('placa', $request->placa)->select('id')->get();
         $pagar = new Pagamento;
 
-        if(floatval($venda->entrada)>0)
-        {
-        $pagar->venda_id = $venda_id[0]['id'];
-        $pagar->cliente =$request->cliente;
-        $pagar->cpf = $request->cpf;
-        $pagar->veiculo = $request->placa;
-        $pagar->referencia = 'Entrada';
-        $pagar->total = $entrada;
-        $pagar->save();
-    }
+        if (floatval($venda->entrada) > 0) {
+            $pagar->venda_id = $venda_id[0]['id'];
+            $pagar->cliente = $request->cliente;
+            $pagar->cpf = $request->cpf;
+            $pagar->veiculo = $request->placa;
+            $pagar->referencia = 'Entrada';
+            $pagar->total = $entrada;
+            $pagar->save();
+        }
 
         Veiculo::findOrFail($id)->delete();
         echo '<script>alert("Venda Realizada!")</script>';
@@ -75,11 +77,10 @@ class VendaController extends Controller
 
     public function date()
     {
-        $dados = explode('d',key($_REQUEST));
-        
-        $dados = Venda::whereBetween('created',array($dados[1],$dados[0]))->get();
+        $dados = explode('d', key($_REQUEST));
+
+        $dados = Venda::whereBetween('created', array($dados[1], $dados[0]))->get();
 
         return view('telas.dados.vendas', ['produtos' => $dados]);
     }
-
 }

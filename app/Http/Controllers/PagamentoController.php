@@ -10,6 +10,7 @@ class PagamentoController extends Controller
 {
     public function store(Request $r)
     {
+        date_default_timezone_set ("America/Sao_Paulo");
         $p = new Pagamento;
         $v = new Venda;
 
@@ -36,6 +37,8 @@ class PagamentoController extends Controller
         $p->referencia = $ref;
         $p->total =$total;
         $p->venda_id = $r->idv;
+        $p->update_at = date('Y-m-d H:i:s');
+        $p->created_at = date('Y-m-d H:i:s');
 
         
         //atualizando pagamento na tabela vendas

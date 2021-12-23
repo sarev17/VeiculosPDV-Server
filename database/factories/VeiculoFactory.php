@@ -13,6 +13,7 @@ class VeiculoFactory extends Factory
      */
     public function definition()
     {
+        date_default_timezone_set ("America/Sao_Paulo");
         return [
            'placa' => $this->faker->randomElement(array(chr(rand(65,90)).chr(rand(65,90)).chr(rand(65,90))."".rand(1111,9999))),
            'produto' => $this->faker->randomElement(array('Moto','Carro')),
@@ -22,8 +23,10 @@ class VeiculoFactory extends Factory
            'cor' => $this->faker->randomElement(array('Vermelha','Preta','Branca')),
            'renavam' => $this->faker->numberBetween(1000000000,9999999999),
            'fabricacao' => $this->faker->numberBetween(2010,2021),
-           'compra' => $this->faker->numberBetween(5000,20000),
-           'venda' => $this->faker->numberBetween(5000,20000)
+           'compra' => $this->faker->numberBetween(5000,8000),
+           'venda' => $this->faker->numberBetween(9000,11000),
+           'updated_at'=> $this->faker->date('Y-m-d H:i:s'),
+           'created_at'=> $this->faker->date('Y-m-d H:i:s')
         ];
     }
 }
