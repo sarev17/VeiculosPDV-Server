@@ -53,7 +53,8 @@ class PDFController extends Controller
     $dia = ['Domingo', 'Segunda-feira', 'Terça-feira', 'Quarta-feira', 'Quinta-feira', 'Sexta-feira', 'Sábado'];
     $mes = ['', 'Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'];
     $hoje = $dia_mes . ' de ' . $mes[$numero_mes];
-
+    $imgW = 'C:\Users\Andre Veras\Documents\laravel\PDV\VeiculosPDV\VeiculosPDV-Server\public\images\logos\primuslogo.jpg';
+    $imgL = '/var/www/VeiculosPDV/public/images/logos/primuslogo.jpg';
     $hojeI = date('Y-m-d') . " 00:00:00";
     $hojeF = date('Y-m-d') . " 23:59:59";
     $mesI = date('Y-m') . '-01 00:00:00';
@@ -65,7 +66,7 @@ class PDFController extends Controller
     $entradas = Pagamento::where('updated_at', '>', $mesI)->where('updated_at', '<', $hojeF)->count();
     
     $pdf = App::make('dompdf.wrapper');
-    $pdf->loadHTML(view('PDF.entradas_mes', ['pagamentos' => $pagamentos, 'total' => $total, 'entradas' => $entradas,'hoje'=>$hoje,'responsavel'=>$responsavel]))->setPaper('A4', 'landscape');
+    $pdf->loadHTML(view('PDF.entradas_mes', ['img'=>$imgL,'pagamentos' => $pagamentos, 'total' => $total, 'entradas' => $entradas,'hoje'=>$hoje,'responsavel'=>$responsavel]))->setPaper('A4', 'landscape');
     return $pdf->stream($mes[$numero_mes].' '.date('Y').'.pdf',['Attachment'=>false]);
     //return view('PDF.entradas', ['pagamentos' => $pagamentos, 'total' => $total, 'entradas' => $entradas,'hoje'=>$hoje,'responsavel'=>$responsavel]);
   }

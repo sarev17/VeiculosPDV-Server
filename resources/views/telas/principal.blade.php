@@ -54,11 +54,11 @@
                         <div class="u-container-layout u-similar-container u-container-layout-3">
                             <h4 class="u-text u-text-white u-text-5">Receber pagamento</h4><span
                                 class="u-file-icon u-hover-feature u-icon u-icon-rectangle u-opacity u-opacity-55 u-text-black u-icon-3"
-                                data-href="{{route('pagamento')}}" data-page-id="268711124"><img src="images/4.png"
+                                data-href="{{ route('pagamento') }}" data-page-id="268711124"><img src="images/4.png"
                                     alt=""></span>
                         </div>
                     </div>
-                    
+
                     <div
                         class="u-align-center u-container-style u-custom-item u-gradient u-list-item u-repeater-item u-video-cover u-list-item-5">
                         <div class="u-container-layout u-similar-container u-container-layout-5">
@@ -74,11 +74,11 @@
                             <h4 class="u-text u-text-white u-text-6">Dados
                             </h4><span
                                 class="u-file-icon u-hover-feature u-icon u-icon-rectangle u-opacity u-opacity-55 u-text-black u-icon-4"
-                                data-href="{{route('dado')}}" data-page-id="147209408"><img src="images/5.png"
+                                data-href="{{ route('dado') }}" data-page-id="147209408"><img src="images/5.png"
                                     alt=""></span>
                         </div>
                     </div>
-                    
+
                 </div>
             </div>
         </div>

@@ -12,8 +12,8 @@
 <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
 
 
-<script src="{{ asset('datatables/jquery.dataTables.min.js')}}"></script>
-<script src="{{ asset('datatables/dataTables.bootstrap4.min.js')}}"></script>
+<script src="{{ asset('datatables/jquery.dataTables.min.js') }}"></script>
+<script src="{{ asset('datatables/dataTables.bootstrap4.min.js') }}"></script>
 <script src="{{ asset('datatables/datatables-demo.js') }}"></script>
 <link href="{{ asset('datatables/dataTables.bootstrap4.min.css') }}" rel="stylesheet">
 
@@ -31,5 +31,18 @@ crossorigin="anonymous"></script>
 integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"
 integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Bitter:400,700">
+<link rel="stylesheet" href="{{ asset('css/style.css') }}">
+
+
+<link rel="stylesheet" type="text/css"
+    href="https://pixinvent.com/stack-responsive-bootstrap-4-admin-template/app-assets/css/bootstrap-extended.min.css">
+
+<link href="https://fonts.googleapis.com/css?family=Montserrat&display=swap" rel="stylesheet">
+
+
 
 @php date_default_timezone_set ("America/Sao_Paulo"); @endphp

@@ -53,7 +53,11 @@
      <table class="resumo">
          <tr>        
              <td style="width:250px">
+<<<<<<< HEAD
                 <img width="250px" src="/var/www/VeiculosPDV/public/images/logos/primuslogo.jpg">
+=======
+                <img width="250px" src="{{$img}}">
+>>>>>>> 1ac5d29a99500f4f5078aeb65241738304cef228
              </td>
 
              <td style="width: 300px;text-align:center">
