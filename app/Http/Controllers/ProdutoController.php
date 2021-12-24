@@ -48,6 +48,11 @@ class ProdutoController extends Controller
         return redirect()->route('veiculos');
     }
 
+    public function edit_placa()
+    {
+        return $_REQUEST;
+    }
+    
     public function edit(Request $request, Veiculo $veiculo)
     {
 
