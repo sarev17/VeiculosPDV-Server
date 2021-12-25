@@ -102,6 +102,7 @@
                             </tr>
                         </table>
                         <div id="formEditar"></div>
+                        <p class="text-center"></p>
                     </div>
                 </div>
             </div>
