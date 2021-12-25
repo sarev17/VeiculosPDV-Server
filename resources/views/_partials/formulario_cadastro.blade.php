@@ -101,6 +101,7 @@
                                 <td id="desc-veiculo" style="text-align:left"></td>
                             </tr>
                         </table>
+                        <div id="formEditar"></div>
                         <p class="text-center"></p>
                     </div>
                 </div>

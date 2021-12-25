@@ -14,6 +14,10 @@
     <meta name="theme-color" content="#478ac9">
     <meta property="og:title" content="Vender">
     <meta property="og:type" content="website">
+<link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" />
+<script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+<script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
+    
 </head>
 
 <body class="u-body">
@@ -29,7 +33,7 @@
                         <form action="{{route('venda.salvar')}}" method="post">
                             @csrf
                             @include('_partials.formulario_venda')
-                            <button type="submit" class="btn btn-primary">Salvar</button>
+                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalPush">Continuar</button>
                             <a href="{{ route('principal') }}"> <button type="button"
                                     class="btn btn-secondary">Cancelar</button></a>
                         </form>
