@@ -12,7 +12,9 @@
     <link rel="stylesheet" href="{{ asset('css\Página-Inicial.css') }}" media="screen">
     @include('_partials.estilos')
 
-
+<link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" />
+<script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+<script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
 
     <meta name="theme-color" content="#478ac9">
     <meta property="og:title" content="Página Inicial">
@@ -83,6 +85,7 @@
             </div>
         </div>
 
+        @include('modals.venda');
 
 
 
