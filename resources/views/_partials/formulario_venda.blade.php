@@ -1,5 +1,4 @@
 <link rel="stylesheet" href="{{ asset('css\form.css') }}" media="screen">
-<script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
 
 @php
     use App\Models\Veiculo;
@@ -136,6 +135,40 @@
         <label>ESTADO</label>
     </div>
 </div>
+
+<!-- Button trigger modal-->
+
+
+<!--Modal: modalPush-->
+<div class="modal fade" id="modalPush" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog modal-notify modal-info" role="document">
+    <!--Content-->
+    <div class="modal-content text-center">
+      <!--Header-->
+      <div class="modal-header d-flex justify-content-center">
+        <p class="heading">Confirmar Venda</p>
+      </div>
+
+      <!--Body-->
+      <div class="modal-body">
+
+        <i class="fa fa-shopping-cart fa-4x animated rotateIn mb-4" aria-hidden="true"></i>
+
+        <p>Deseja confirmar a venda?</p>
+
+      </div>
+
+      <!--Footer-->
+      <div class="modal-footer flex-center">
+        <button type="submit" class="btn btn-primary">Salvar</button>
+        <a type="button" class="btn btn-outline-info waves-effect" data-dismiss="modal">No</a>
+      </div>
+    </div>
+    <!--/.Content-->
+  </div>
+</div>
+<!--Modal: modalPush-->
 <hr>
 
 
@@ -143,8 +176,47 @@
     
     placa();
 
-    function placa() {
+$('#placa').keyup(function() {
+        valores = ['Veiculo', 'placa', $('#placa').val(), 'parcial'];
+        $.ajax({
+            type: "POST",
+            url: 'ajax',
+            dataType: 'html',
+            data: {
+                valores,
+                _token: '{{ csrf_token() }}'
+            },
+            success: function(data) {
+                
+                dados = JSON.parse(data);
+                placas = []
+                
 
+                dados[0].forEach(function(ele){
+                  placas.push(ele['placa']+'|'+ele['modelo']+'|'+ele['fabricacao']);
+                  
+
+                });
+
+                  console.log(placas)
+
+                $("#placa").autocomplete({
+                    minlength:1,
+                    autofocus: true,
+                    source: placas,
+                    
+                    
+                });
+
+            },
+            error: function(data, textStatus, errorThrown) {
+                console.log(data);
+            },
+        })
+
+    });
+
+    function placa() {
         valores = ['Veiculo', 'placa', $('#placa').val()];
         if ($('#placa').val().length == 7) {
             $.ajax({
@@ -171,6 +243,7 @@
                 },
                 error: function(data, textStatus, errorThrown) {
                     console.log(data);
+                    
                 },
             })
         }
