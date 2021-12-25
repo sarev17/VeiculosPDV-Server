@@ -2,35 +2,78 @@
     use App\Models\Veiculo;
     $compra = floatVal(Veiculo::select('compra')->sum('compra'));
     $venda = floatVal(Veiculo::select('venda')->sum('venda'));
+    $totalCarro = Veiculo::where('produto','=','Carro')->count();
+    $totalMoto = Veiculo::where('produto','=','Moto')->count();
     $lucro = $venda-$compra 
 @endphp
-<link rel="stylesheet" href="{{ asset('css\blocos_estoque.css') }}" media="screen">
-<section class="u-clearfix u-white u-section-1" id="sec-f200">
-      <div class="u-clearfix u-sheet u-valign-middle u-sheet-1">
-        <div class="u-container-style u-group u-palette-1-base u-shape-rectangle u-group-1">
-          <div class="u-container-layout u-container-layout-1">
-            <h3 class="u-text u-text-1">TOTAL DE VEICULOS</h3><span 
-                class="u-file-icon u-icon u-text-white u-icon-1">
-                    <img src="{{asset('images/car.png')}}" alt=""></span>
-                        <span class="u-file-icon u-icon u-text-white u-icon-2">
-                            <img src="{{asset('images/moto.png')}}" alt=""></span>
-            <h3 class="u-text u-text-default u-text-2">{{Veiculo::where('produto','carro')->count()}}</h3>
-            <h3 class="u-text u-text-default u-text-3">{{Veiculo::where('produto','moto')->count()}}</h3>
-          </div>
-        </div>
-        <div class="u-container-style u-group u-palette-1-base u-shape-rectangle u-group-2">
-          <div class="u-container-layout u-container-layout-2">
-            <h3 class="u-text u-text-4">TOTAL INVESTIDO</h3>
-            <h3 class="u-text u-text-5">R$ {{number_format(floatVal(Veiculo::select('compra')->sum('compra')),2,',','.')}}</h3>
-          </div>
-        </div>
-        <div class="u-container-style u-group u-palette-1-base u-shape-rectangle u-group-3">
-          <div class="u-container-layout u-container-layout-3">
-            <h3 class="u-text u-text-6">LUCRO PREVISTO</h3>
-            <h3 class="u-text u-text-7">R$ {{number_format($lucro,2,',','.')}}</h3>
-          </div>
-        </div>
-      </div>
-    </section>
     
-    
+    <div class="row">
+                <div class="col-xl-3 col-sm-6 col-12">
+                    <div class="card">
+                        <div class="card-content">
+                            <div class="card-body">
+                                <div class="media d-flex">
+                                    <div style="width:10px" class="align-self-center">
+                                        <i class="fa fa-car fa-3x"></i>
+                                    </div>
+                                    <div class="media-body text-right">
+                                        <h3>{{$totalCarro}}</h3>
+                                        <span>Carros</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-3 col-sm-6 col-12">
+                    <div class="card">
+                        <div class="card-content">
+                            <div class="card-body">
+                                <div class="media d-flex">
+                                    <div class="align-self-center">
+                                        <i class="fas fa-motorcycle fa-3x"></i>
+                                    </div>
+                                    <div class="media-body text-right">
+                                        <h3>{{$totalMoto}}</h3>
+                                        <span>Motos</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-3 col-sm-6 col-12">
+                    <div class="card">
+                        <div class="card-content">
+                            <div class="card-body">
+                                <div class="media d-flex">
+                                    <div class="align-self-center">
+                                        <i class="fas fa-wallet fa-3x" ></i>
+                                    </div>
+                                    <div class="media-body text-right">
+                                        <h3>R$ {{number_format($compra,2,',','.')}}</h3>
+                                        <span>Total investido</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-3 col-sm-6 col-12">
+                    <div class="card">
+                        <div class="card-content">
+                            <div class="card-body">
+                                <div class="media d-flex">
+                                    <div class="align-self-center">
+                                        <i class="fas fa-file-invoice-dollar fa-3x"></i></i>
+                                    </div>
+                                    <div class="media-body text-right">
+                                        <h3>R$ {{number_format($lucro,2,',','.')}}</h3>
+                                        <span>Lucro previsto</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>

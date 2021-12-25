@@ -12,6 +12,11 @@
     <link rel="stylesheet" href="{{ asset('css\Página-Inicial.css') }}" media="screen">
     @include('_partials.estilos')
 
+<meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Untitled</title>
+
+    
 
 
     <meta name="theme-color" content="#478ac9">
