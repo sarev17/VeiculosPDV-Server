@@ -1,7 +1,6 @@
     <!-- Scripts DataTables -->
 
     @include('_partials.estilos')
-    @include('_partials.cabecalho')
     
     <!-- DataTales Example -->
     <h3 style="text-align:center;padding-top:30px">Consulta Estoque</h3>
