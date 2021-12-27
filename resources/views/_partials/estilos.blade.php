@@ -11,12 +11,6 @@
 
 
 
-
-<script src="{{ asset('datatables/jquery.dataTables.min.js') }}"></script>
-<script src="{{ asset('datatables/dataTables.bootstrap4.min.js') }}"></script>
-<script src="{{ asset('datatables/datatables-demo.js') }}"></script>
-<link href="{{ asset('datatables/dataTables.bootstrap4.min.css') }}" rel="stylesheet">
-
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.css">
 
 

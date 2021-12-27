@@ -3,6 +3,10 @@
 
 @include('_partials.estilos')
 @include('_partials.cabecalho')
+<script src="{{ asset('datatables/jquery.dataTables.min.js') }}"></script>
+<script src="{{ asset('datatables/dataTables.bootstrap4.min.js') }}"></script>
+<script src="{{ asset('datatables/datatables-demo.js') }}"></script>
+<link href="{{ asset('datatables/dataTables.bootstrap4.min.css') }}" rel="stylesheet">
    <!-- DataTales Example -->
 <h3 style="text-align:center;padding-top:30px">Vendas</h3>
 <div class="card shadow mb-4">
