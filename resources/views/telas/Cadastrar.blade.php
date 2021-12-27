@@ -10,11 +10,14 @@
     <title>Cadastrar</title>
 
     <link rel="stylesheet" href="{{ asset('css\Cadastrar.css') }}" media="screen">
+    
+    
     @include('_partials.estilos')
 
     <meta name="theme-color" content="#478ac9">
     <meta property="og:title" content="Cadastrar">
     <meta property="og:type" content="website">
+
 
 </head>
 

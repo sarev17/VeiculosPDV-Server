@@ -86,6 +86,9 @@ Route::prefix('dados')->group(function () {
     Route::get('editar_veiculo', function () {
         return view('telas.editar_veiculo');
     })->name('editar_veiculo');
+
+    Route::get('editar_placa/{placa}',[ProdutoController::class,'edit_placa']);
+    
 });
 
 Route::prefix('PDF')->group(function(){

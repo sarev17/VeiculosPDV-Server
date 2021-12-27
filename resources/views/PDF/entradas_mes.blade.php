@@ -57,7 +57,11 @@
      <table class="resumo">
          <tr>        
              <td style="width:250px">
+<<<<<<< HEAD
                 <img width="250px" src={{$imgL}}>
+=======
+                <img width="250px" src="{{$img}}">
+>>>>>>> 124c4bd2a4e30c81a577e22ada56054e8fc84a37
              </td>
 
              <td style="width: 300px;text-align:center">

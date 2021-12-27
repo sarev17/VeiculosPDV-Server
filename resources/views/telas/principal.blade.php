@@ -12,12 +12,9 @@
     <link rel="stylesheet" href="{{ asset('css\Página-Inicial.css') }}" media="screen">
     @include('_partials.estilos')
 
-<meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Untitled</title>
-
-    
-
+<link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" />
+<script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+<script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
 
     <meta name="theme-color" content="#478ac9">
     <meta property="og:title" content="Página Inicial">
@@ -59,11 +56,11 @@
                         <div class="u-container-layout u-similar-container u-container-layout-3">
                             <h4 class="u-text u-text-white u-text-5">Receber pagamento</h4><span
                                 class="u-file-icon u-hover-feature u-icon u-icon-rectangle u-opacity u-opacity-55 u-text-black u-icon-3"
-                                data-href="{{route('pagamento')}}" data-page-id="268711124"><img src="images/4.png"
+                                data-href="{{ route('pagamento') }}" data-page-id="268711124"><img src="images/4.png"
                                     alt=""></span>
                         </div>
                     </div>
-                    
+
                     <div
                         class="u-align-center u-container-style u-custom-item u-gradient u-list-item u-repeater-item u-video-cover u-list-item-5">
                         <div class="u-container-layout u-similar-container u-container-layout-5">
@@ -79,15 +76,16 @@
                             <h4 class="u-text u-text-white u-text-6">Dados
                             </h4><span
                                 class="u-file-icon u-hover-feature u-icon u-icon-rectangle u-opacity u-opacity-55 u-text-black u-icon-4"
-                                data-href="{{route('dado')}}" data-page-id="147209408"><img src="images/5.png"
+                                data-href="{{ route('dado') }}" data-page-id="147209408"><img src="images/5.png"
                                     alt=""></span>
                         </div>
                     </div>
-                    
+
                 </div>
             </div>
         </div>
 
+        @include('modals.venda');
 
 
 
