@@ -58,10 +58,24 @@
          <tr>        
              <td style="width:250px">
 <<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
+                <img width="250px" src="/var/www/VeiculosPDV/public/images/logos/primuslogo.jpg">
+=======
+                <img width="250px" src="$img">
+>>>>>>> 1ac5d29a99500f4f5078aeb65241738304cef228
+=======
                 <img width="250px" src={{$imgL}}>
 =======
                 <img width="250px" src="$img">
 >>>>>>> 124c4bd2a4e30c81a577e22ada56054e8fc84a37
+>>>>>>> bea941e7c821e9e8c733902dd02c114d16adb2b2
+=======
+                <img width="250px" src={{$imgL}}>
+=======
+                <img width="250px" src="$img">
+>>>>>>> 124c4bd2a4e30c81a577e22ada56054e8fc84a37
+>>>>>>> 2eebe1579d70359690174776d94c24dc26dad9c7
              </td>
 
              <td style="width: 300px;text-align:center">
