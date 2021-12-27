@@ -1,5 +1,7 @@
 @php
-require 'C:\Users\Andre Veras\Documents\laravel\PDV\VeiculosPDV\VeiculosPDV-Server\public\phpqrcode\qrlib.php';
+    $pathL= '/var/www/VeiculosPDV/public/phpqrcode/qrlib.php';
+    $pathW = 'C:\Users\Andre Veras\Documents\laravel\PDV\VeiculosPDV\VeiculosPDV-Server\public\phpqrcode\qrlib.php';
+    require $pathL ;
 @endphp
 
 <style>

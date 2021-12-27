@@ -48,12 +48,16 @@
 
 <body>
     
+    @php 
+        $imgL = '/var/www/VeiculosPDV/public/images/logos/primuslogo.jpg';
+        $imgW = 'C:\Users\Andre Veras\Documents\laravel\PDV\VeiculosPDV\VeiculosPDV-Server\public\images\logos\primuslogo.jpg';
+    @endphp
 
     <div>
      <table class="resumo">
          <tr>        
              <td style="width:250px">
-                <img width="250px" src="C:\Users\Andre Veras\Documents\laravel\PDV\VeiculosPDV\VeiculosPDV-Server\public\images\logos\primuslogo.jpg">
+                <img width="250px" src={{$imgL}}>
              </td>
 
              <td style="width: 300px;text-align:center">
