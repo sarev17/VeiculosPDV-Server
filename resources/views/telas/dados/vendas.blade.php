@@ -22,7 +22,6 @@
                                 <th>Data da venda</th>
 
 
-                                <th>Ações</th>
                             </tr>
                         </thead>
 
@@ -43,7 +42,6 @@
                                     <td>R$ {{$entrada }}</td>
                                     <td>R$ {{$mensalidade}}</td>
                                     <td>{{ $produto->updated_at }}</td>
-                                    <td></td>    
                                     @include('_partials.btn_datatable')
                                 </tr>
                             @endforeach

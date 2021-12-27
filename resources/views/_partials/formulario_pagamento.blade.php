@@ -1,6 +1,9 @@
 <link rel="stylesheet" href="{{ asset('css\form.css') }}" media="screen">
 <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
-
+<link rel="stylesheet" href="//code.jquery.com/ui/1.13.0/themes/base/jquery-ui.css">
+<link rel="stylesheet" href="/resources/demos/style.css">
+<script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+<script src="https://code.jquery.com/ui/1.13.0/jquery-ui.js"></script>
 
 
 <div>
@@ -40,8 +43,7 @@
         <label for="placa">TOTAL</label>
     </div>
     <div class='label-float row'>
-        <input  required type="hidden" name="idv"
-            id="idv" class="entrada entrada-G" >
+        <input required type="hidden" name="idv" id="idv" class="entrada entrada-G">
     </div>
 
 </div>
@@ -86,7 +88,7 @@
     $('#cpf').keyup(function() {
         valores = ['Venda', 'cpf', $('#cpf').val()];
         console.log("buscando: " + valores);
-        if ($('#cpf').val().length==14) {
+        if ($('#cpf').val().length == 14) {
             $.ajax({
                 type: "POST",
                 url: 'ajax',
@@ -120,10 +122,84 @@
     function totalP() {
         total = (parseInt($('#adiantar').val()) * (retira_moeda('mensalidade'))).toFixed(2);
         console.log('total= ' + total);
-        qtd =  $('#adiantar').val()
+        qtd = $('#adiantar').val()
         $('#total').val(total);
         $('#total').focus();
         $('#adiantar').focus();
         return total;
     }
+
+
+
+    $('#cliente').keyup(function() {
+        valores = ['Venda', 'cliente', $('#cliente').val(), 'parcial'];
+        console.log("buscando: " + valores);
+        $.ajax({
+            type: "POST",
+            url: 'ajax',
+            dataType: 'html',
+            data: {
+                valores,
+                _token: '{{ csrf_token() }}'
+            },
+            success: function(data) {
+                console.log(data);
+                json = JSON.parse(data)
+
+                var comp = [];
+                json.forEach(function(dado) {
+                    comp.push(dado.cliente.toUpperCase() + ' | R$ ' + dado.mensalidade)
+                })
+
+                $("#cliente").autocomplete({
+                    source: comp,
+                    select: function(e, i) {
+                        var clienteN = i.item.value.split(' |')[0];
+                        valores = ['Venda','cliente',clienteN]
+                        $.ajax({
+                            type: "POST",
+                            url: 'ajax',
+                            dataType: 'html',
+                            data: {
+                                valores,
+                                _token: '{{ csrf_token() }}'
+                            },
+                            success: function(data) {
+                                console.log(data);
+                                dados = JSON.parse(data);
+                                $('#cliente').val(clienteN);
+                                $('#cpf').val(dados['cpf']);
+                                $('#veiculo').val(dados['marca'] + " " +
+                                    dados['modelo'] + " - " + dados[
+                                        'placa']);
+                                $('#pagas').val((parseInt(dados['pagas']) +
+                                    1) + "/" + dados['parcelas']);
+                                $('#mensalidade').val(dados['mensalidade']);
+                                $('#mensalidade').focus();
+                                $('#total').val(totalP());
+                                moeda('total', parseFloat($('#total').val())
+                                    .toFixed(2));
+                                $('#total').focus();
+                                $('#idv').val(dados['id']);
+
+                            },
+                            error: function(data, textStatus, errorThrown) {
+                                console.log(data);
+
+                            },
+                        })
+
+
+                    }
+
+                });
+
+
+            },
+            error: function(data, textStatus, errorThrown) {
+                console.log(data);
+
+            },
+        })
+    });
 </script>

@@ -25,17 +25,18 @@
             <div class="u-container-style u-expanded-width u-group u-shape-rectangle u-white u-group-1">
                 <div class="u-container-layout u-container-layout-1">
                     <h2 class="u-align-center u-custom-font u-font-montserrat u-text u-text-1">Pagamento</h2>
-                    
+
                     <div class="u-align-center u-form u-form-1">
-                        <form action="{{route('pagamento.salvar')}}" method="post">
+                        <form id="pagamento" target="_blank" action="{{ route('pagamento.salvar') }}" method="post">
                             @csrf
                             @include('_partials.formulario_pagamento')
                             @include('_partials.js')
-                             <button type="submit" class="btn btn-primary">Salvar</button>
-                       <a href="{{route('principal')}}"> <button type="button" class="btn btn-secondary">Cancelar</button></a>    
+                            <button id="btnPagamento" class="btn btn-primary">Salvar</button>
+                            <a href="{{ route('principal') }}"> <button type="button"
+                                    class="btn btn-secondary">Cancelar</button></a>
                         </form>
                     </div>
-                    
+
                 </div>
             </div>
         </div>
@@ -45,3 +46,10 @@
 </body>
 
 </html>
+<script>
+    $('#btnPagamento').click(function(){
+        $('#pagamento').submit();
+        $('#pagamento')[0].reset();
+        
+    })
+</script>

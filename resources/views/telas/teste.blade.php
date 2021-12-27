@@ -1,42 +1,70 @@
-<link rel>
-<script href="{{ asset('js\datatable\datatables-demo.js') }}"></script>
-<script href="{{ asset('js\datatable\dataTables.bootstrap4.js') }}"></script>
-<script href="{{ asset('js\datatable\dataTables.bootstrap4.min.js') }}"></script>
-<script href="{{ asset('js\datatable\jquery.dataTables.js') }}"></script>
-<script href="{{ asset('js\datatable\jquery.dataTables.min.js') }}"></script>
-<link href="{{ asset('js\datatables\dataTables.bootstrap4.min.css') }}" rel="stylesheet">
+@php
+    require('C:\Users\Andre Veras\Documents\laravel\PDV\VeiculosPDV\VeiculosPDV-Server\public\phpqrcode\qrlib.php')
+@endphp
 
+<style>
+    table{
+        margin: auto;
+    }
+    .center{
+        text-align: center;
+    }
+    tr{
+        height: 20px;
+    }
+</style>
 
-<script type="text/javascript" src="{{asset('js/datatables/jquery-3.3.1.js')}}"></script>
-<script type="text/javascript" src="{{asset('js/datatables/jquery.dataTables.min.js')}}"></script>
-<script type="text/javascript" src="{{asset('js/datatables/dataTables.responsive.min.js')}}"></script>
-<link rel="stylesheet" href="{{asset('js/datatables/jquery.dataTables.min.css')}}">
-<link rel="stylesheet" href="{{asset('js/datatables/responsive.dataTables.min.css')}}">
+<div class="center">
+    <h3>Marcos Motos</h3>
+    <h4>CNPJ: 99.999.999/9999-99 MEI</h4>
+    <p>Rua João Tabosa Braga SN, 12, Itapipoca-Ce</p>
+</div>
+<hr>
+<div class="center">
+<h4>COMPROVANTE DE PAGAMENTO</h4>
+</div>
+<hr>
 
-
-<!-- DataTales Example -->
-<div class="card shadow mb-4">
-
-    <div class="card-body">
-        <div class="table-responsive">
-            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                <thead>
-                    <tr>
-                        <th>Nome</th>
-                        <th>Valor</th>
-                        <th>Estoque</th>
-                        <th>SubCategoria</th>
-                        <th>Imagem</th>
-                        <th>Ações</th>
-                    </tr>
-                </thead>
-
-                <tbody>
-                    <tr>
-                        <td>teste</td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
+<div>
+    <table class="detalhes">
+        <tr>
+            <td>COD</td>
+            <td>CLIENTE</td>
+            <td>CPF</td>
+            <td>DESCRIÇÃO</td>
+        </tr>
+        <tr>
+            <td style="width: 50px;">03</td>
+            <td style="width: 200px;">Andre Veras da Costa</td>
+            <td style="width: 150px;">057.373.235-21</td>    
+            <td style="width: 250px;">XNR BROS 150 ESD | OCQ2117</td>
+        </tr>
+    </table>
+</div>
+<hr>
+<div>
+<table class="detalhes">
+        <tr>
+            <td>REF</td>
+            <td>RESTANTES</td>
+            <td>TOTAL DA VENDA</td>
+        </tr>
+        <tr>
+            <td style="width: 200px;">PARCELA 1</td>
+            <td style="width: 200px;">08</td>
+            <td style="width: 200px;">R$ 45.000,00</td>
+        </tr>
+        <tr>
+            <td colspan='2' style="width: 400px;"><b> VALOR DO RECIBO </b></td>
+            <td colspan='2'><b> R$ 344,50</b></td>
+        </tr>
+    </table>
+    <hr>
+    <div class="center">
+        @php
+            $qrCodeNome = "Comprovante_ID_pagamento.png";
+            QRcode::png('http://31.220.31.42/',$qrCodeNome);
+            echo '<img width=100px src='.$qrCodeNome.'>';
+        @endphp
     </div>
 </div>

@@ -19,7 +19,7 @@
                             <th>Data Pagamento</th>
 
 
-                            <th>Ações</th>
+                            
                         </tr>
                     </thead>
 
@@ -36,8 +36,6 @@
                                 <td>R$ {{ $valor }}</td>
                                 <td>{{ $produto->created_at }}</td>
 
-                                <td>
-                                </td>
                                 
                                 @include('_partials.btn_datatable')
                             </tr>
