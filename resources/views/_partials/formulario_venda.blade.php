@@ -176,45 +176,6 @@
     
     placa();
 
-$('#placa').keyup(function() {
-        valores = ['Veiculo', 'placa', $('#placa').val(), 'parcial'];
-        $.ajax({
-            type: "POST",
-            url: 'ajax',
-            dataType: 'html',
-            data: {
-                valores,
-                _token: '{{ csrf_token() }}'
-            },
-            success: function(data) {
-                
-                dados = JSON.parse(data);
-                placas = []
-                
-
-                dados[0].forEach(function(ele){
-                  placas.push(ele['placa']+'|'+ele['modelo']+'|'+ele['fabricacao']);
-                  
-
-                });
-
-                  console.log(placas)
-
-                $("#placa").autocomplete({
-                    minlength:1,
-                    autofocus: true,
-                    source: placas,
-                    
-                    
-                });
-
-            },
-            error: function(data, textStatus, errorThrown) {
-                console.log(data);
-            },
-        })
-
-    });
 
     function placa() {
         valores = ['Veiculo', 'placa', $('#placa').val()];

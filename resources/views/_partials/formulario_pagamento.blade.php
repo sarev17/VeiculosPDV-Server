@@ -52,37 +52,7 @@
 <br>
 <script>
     //BUSCA PELO NOME
-    $('#cliente').blur(function() {
-        valores = ['Venda', 'cliente', $('#cliente').val()];
-        console.log("buscando: " + valores);
-        $.ajax({
-            type: "POST",
-            url: 'ajax',
-            dataType: 'html',
-            data: {
-                valores,
-                _token: '{{ csrf_token() }}'
-            },
-            success: function(data) {
-                console.log(data);
-                dados = JSON.parse(data);
-                $('#cpf').val(dados['cpf']);
-                $('#veiculo').val(dados['marca'] + " " + dados['modelo'] + " - " + dados['placa']);
-                $('#pagas').val((parseInt(dados['pagas']) + 1) + "/" + dados['parcelas']);
-                $('#mensalidade').val(dados['mensalidade']);
-                $('#mensalidade').focus();
-                $('#total').val(totalP());
-                moeda('total', parseFloat($('#total').val()).toFixed(2));
-                $('#total').focus();
-                $('#idv').val(dados['id']);
-
-            },
-            error: function(data, textStatus, errorThrown) {
-                console.log(data);
-
-            },
-        })
-    });
+    
 
     //BUSCA PELO CPF
     $('#cpf').keyup(function() {
@@ -148,14 +118,14 @@
 
                 var comp = [];
                 json.forEach(function(dado) {
-                    comp.push(dado.cliente.toUpperCase() + ' | R$ ' + dado.mensalidade)
+                    comp.push(dado.id+' | '+dado.cliente.toUpperCase() + ' | R$ ' + dado.mensalidade)
                 })
 
                 $("#cliente").autocomplete({
                     source: comp,
                     select: function(e, i) {
-                        var clienteN = i.item.value.split(' |')[0];
-                        valores = ['Venda','cliente',clienteN]
+                        var clienteN = i.item.value.split(' | ')[1];
+                        valores = ['Venda','cliente',clienteN,'complete',i.item.value.split(' | ')[0]]
                         $.ajax({
                             type: "POST",
                             url: 'ajax',

@@ -50,6 +50,7 @@
     $('#btnPagamento').click(function(){
         $('#pagamento').submit();
         $('#pagamento')[0].reset();
+        alert('Pagamento Confirmado \nImprima o recibo')
         
     })
 </script>

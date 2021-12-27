@@ -9,24 +9,27 @@ $valores = array($_POST);
 $model = $valores[0]['valores'][0];
 $coluna = $valores[0]['valores'][1];
 $dado = $valores[0]['valores'][2];
-if(isset($valores[0]['valores'][3])){
-    $tipo = ($valores[0]['valores'][3]);
-}else{
-    $tipo='';
-}
 
 
-if (isset($valores[0]['valores'][3])) {
-    
-    $busca = Venda::where($coluna,'like', '%'.$dado.'%')->get();
-        echo json_encode($busca);
+
+
+
+if (isset($valores[0]['valores'][4])) {
+    $busca = array(Venda::where('id', $valores[0]['valores'][4])->get());
+            echo $busca[0][0];
 } else {
-    if ($model == 'Veiculo') {
-        $busca = array(Veiculo::where($coluna, $dado)->get());
-        echo $busca[0][0];
-    }
-    if ($model == 'Venda') {
-        $busca = array(Venda::where($coluna, $dado)->where('status', 'aberta')->get());
-        echo $busca[0][0];
+    if (isset($valores[0]['valores'][3])) {
+
+        $busca = Venda::where($coluna, 'like', '%' . $dado . '%')->get();
+        echo json_encode($busca);
+    } else {
+        if ($model == 'Veiculo') {
+            $busca = array(Veiculo::where($coluna, $dado)->get());
+            echo $busca[0][0];
+        }
+        if ($model == 'Venda') {
+            $busca = array(Venda::where($coluna, $dado)->where('status', 'aberta')->get());
+            echo $busca[0][0];
+        }
     }
 }
