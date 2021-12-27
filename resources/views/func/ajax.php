@@ -15,10 +15,7 @@ if(isset($valores[0]['valores'][3])){
     $tipo='';
 }
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> 2eebe1579d70359690174776d94c24dc26dad9c7
+
 if (isset($valores[0]['valores'][3])) {
     
     $busca = Venda::where($coluna,'like', '%'.$dado.'%')->get();
@@ -32,27 +29,4 @@ if (isset($valores[0]['valores'][3])) {
         $busca = array(Venda::where($coluna, $dado)->where('status', 'aberta')->get());
         echo $busca[0][0];
     }
-<<<<<<< HEAD
 }
-=======
-
-if ($tipo == 'parcial') {
-    if ($model == 'Veiculo')
-        {$busca = array(Veiculo::where($coluna,'like','%'.$dado.'%')->get());
-            echo json_encode($busca);}
-    if ($model == 'Venda')
-        {$busca = array(Venda::where($coluna,'like',$dado.'%')->get());
-        echo json_encode($busca);}
-}else{
-    if ($model == 'Veiculo')
-        {$busca = array(Veiculo::where($coluna, $dado)->get());
-        echo $busca[0][0];}
-    if ($model == 'Venda')
-        {$busca = array(Venda::where($coluna, $dado)->where('status', 'aberta')->get());
-        echo $busca[0][0];}
-}
-//
->>>>>>> 124c4bd2a4e30c81a577e22ada56054e8fc84a37
-=======
-}
->>>>>>> 2eebe1579d70359690174776d94c24dc26dad9c7
