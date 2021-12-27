@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Pagamento;
 use App\Models\Venda;
+use Facade\FlareClient\Http\Client;
 use Illuminate\Support\Facades\App;
 
 class PagamentoController extends Controller
@@ -58,8 +59,6 @@ class PagamentoController extends Controller
         return $pdf->stream('Comprovante ' . date('Y') . '.pdf', ['Attachment' => false]);
         //return view('PDF.entradas', ['pagamentos' => $pagamentos, 'total' => $total, 'entradas' => $entradas,'hoje'=>$hoje,'responsavel'=>$responsavel]);
 
-
-
     }
 
     public function listar()
@@ -73,8 +72,17 @@ class PagamentoController extends Controller
     public function date()
     {
         $dados = explode('d', key($_REQUEST));
-
         $dados = Pagamento::whereBetween('created_at', array($dados[0] . ' 00:00:00', $dados[1] . ' 23:59:59'))->get();
         return view('telas.dados.entradas', ['produtos' => $dados]);
+    }
+
+    public function busca_qr(Venda $id)
+    {
+        $pagamentos = Pagamento::where('venda_id', '=', $id->id)->get();
+
+        $pdf = App::make('dompdf.wrapper');
+        $pdf->loadHTML(view('comprovantes.pagamento', ['produtos' => $pagamentos]))->setPaper('A4', 'portrait');
+        return $pdf->stream('Pagamentos ' . ' ' . date('Y') . '.pdf', ['Attachment' => false]);
+        
     }
 }

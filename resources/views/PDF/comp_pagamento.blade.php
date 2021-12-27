@@ -1,7 +1,7 @@
 @php
-    $pathL= '/var/www/VeiculosPDV/public/phpqrcode/qrlib.php';
-    $pathW = 'C:\Users\Andre Veras\Documents\laravel\PDV\VeiculosPDV\VeiculosPDV-Server\public\phpqrcode\qrlib.php';
-    require $pathW ;
+$pathL = '/var/www/VeiculosPDV/public/phpqrcode/qrlib.php';
+$pathW = 'C:\Users\Andre Veras\Documents\laravel\PDV\VeiculosPDV\VeiculosPDV-Server\public\phpqrcode\qrlib.php';
+require $pathL;
 @endphp
 
 <style>
@@ -17,21 +17,29 @@
         height: 20px;
     }
 
+    hr {
+        border-width: 0;
+        height: 1px;
+        border-top-width: 1px;
+        border-top: 1px dotted #000;
+    }
+
     @page {
         margin-top: 1cm;
-        size: 58mm 100mm;
-        font-size: 6pt;
+        size: 80mm 120mm;
+        font-size: 8pt;
     }
 
 </style>
 
 <div class="center">
-    <h3>Marcos Motos</h3>
-    <p>Rua João Tabosa Braga SN, 12, Itapipoca-Ce</p>
+    <hr>
+    <h3>COMPROVANTE DE PAGAMENTO</h3>
 </div>
 <hr>
 <div class="center">
-    <h4>COMPR. PAGAMENTO</h4>
+    <p>Valor do pagamento</p>
+    <h1>{{$r->total}}</h1>
 </div>
 <hr>
 
@@ -47,31 +55,16 @@
             <td>{{ strtoupper($r->cliente) }}</td>
             <td>{{ strtoupper($r->cpf) }}</td>
         </tr>
-        <tr>
-            <td>DESCRIÇÃO</td>
-            <td>REF</td>
-        </tr>
-        <tr>
-            <td>{{ strtoupper($r->veiculo) }}</td>
-            <td>{{ strtoupper($r->pagas) }}</td>
-        </tr>
     </table>
 </div>
 <hr>
 <div>
-    <table class="detalhes">
-        <tr>
-            <td><b> VALOR DO RECIBO </b></td>
-            <td ><b>{{ strtoupper($r->total) }}</b></td>
-        </tr>
-    </table>
-</div>
-<hr>
+<p>Favorecido: Marcos Motos - 999.999.9999/99<br>DESC: {{$r->veiculo}}<br><b>REF: {{$r->pagas}}</b></p>
+<p style="text-align:right">PAGO EM: {{date('d/m/Y')}}</p>
 <div class="center">
     @php
         $qrCodeNome = 'Comprovante_ID_pagamento.png';
-        QRcode::png('http://31.220.31.42/', $qrCodeNome);
-        echo '<img width=50px src=' . $qrCodeNome . '>';
+        QRcode::png('http://31.220.31.42/qr_pagamento/'.$r->idv, $qrCodeNome);
+        echo '<img width=80px src=' . $qrCodeNome . '>';
     @endphp
-</div>
 </div>

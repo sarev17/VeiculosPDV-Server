@@ -97,4 +97,5 @@ Route::prefix('PDF')->group(function(){
     
 });
 
+Route::get('qr_pagamento/{id}',[PagamentoController::class,'busca_qr']);
 
