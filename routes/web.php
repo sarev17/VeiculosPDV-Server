@@ -5,6 +5,7 @@ use App\Http\Controllers\ProdutoController;
 use App\Http\Controllers\VendaController;
 use App\Http\Controllers\PagamentoController;
 use App\Http\Controllers\PDFController;
+use App\Http\Controllers\LoginController;
 use Illuminate\Routing\RouteGroup;
 
 /*
@@ -98,4 +99,7 @@ Route::prefix('PDF')->group(function(){
 });
 
 Route::get('qr_pagamento/{id}',[PagamentoController::class,'busca_qr']);
+
+Route::get('login/{erro?}',[LoginController::class,'index'])->name('login');
+Route::post('login',[LoginController::class,'autenticar'])->name('login_autenticar');
 
