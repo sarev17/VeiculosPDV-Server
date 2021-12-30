@@ -19,6 +19,7 @@ class CreateUsersTable extends Migration
             $table->string('password');
             $table->enum('nivel',['funcionario','administrador','gerente']); //administrador,gerente,funcionario
             $table->rememberToken();
+            $table->date('validade');
             $table->timestamps();
         });
     }

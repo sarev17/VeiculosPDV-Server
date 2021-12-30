@@ -24,21 +24,21 @@
         <div class="u-expanded-width u-list u-list-1">
           <div class="u-repeater u-repeater-1">
             <div class="u-align-center u-container-style u-custom-item u-list-item u-repeater-item u-video-cover u-white u-list-item-1">
-              <div class="u-container-layout u-similar-container u-valign-top u-container-layout-1"><span class="u-file-icon u-icon u-icon-1"><img src="images/2312686.png" alt=""></span>
+              <div class="u-container-layout u-similar-container u-valign-top u-container-layout-1"><span class="u-file-icon u-icon u-icon-1"><img src="{{asset('images/2312686.png')}}" alt=""></span>
                 <h4 class="u-text u-text-default u-text-3">Estoque</h4>
                 <p class="u-text u-text-4">Liste/Edite/Exclua produtos cadastrados na base de dados</p>
                 <a href="{{route('veiculos')}}" class="u-btn u-button-style u-hover-palette-1-dark-1 u-palette-2-base u-btn-1">Acessar</a>
               </div>
             </div>
             <div class="u-align-center u-container-style u-custom-item u-list-item u-repeater-item u-video-cover u-white u-list-item-2">
-              <div class="u-container-layout u-similar-container u-valign-top u-container-layout-2"><span class="u-file-icon u-icon u-icon-2"><img src="images/1062868.png" alt=""></span>
+              <div class="u-container-layout u-similar-container u-valign-top u-container-layout-2"><span class="u-file-icon u-icon u-icon-2"><img src="{{asset('images/1062868.png')}}" alt=""></span>
                 <h4 class="u-text u-text-default u-text-5">Entradas</h4>
                 <p class="u-text u-text-6">Pagamentos recebidos&nbsp;</p>
                 <a href="{{route('entradas')}}" class="u-btn u-button-style u-hover-palette-1-dark-1 u-palette-2-base u-btn-2">learn more</a>
               </div>
             </div>
             <div class="u-align-center u-container-style u-custom-item u-list-item u-repeater-item u-video-cover u-white u-list-item-3">
-              <div class="u-container-layout u-similar-container u-valign-top u-container-layout-3"><span class="u-file-icon u-icon u-icon-3"><img src="images/3358799.png" alt=""></span>
+              <div class="u-container-layout u-similar-container u-valign-top u-container-layout-3"><span class="u-file-icon u-icon u-icon-3"><img src="{{asset('images/3358799.png')}}" alt=""></span>
                 <h4 class="u-text u-text-default u-text-7">Vendas</h4>
                 <p class="u-text u-text-8">Relatorio de vendas , saldos e valores a receber.</p>
                 <a href="{{route('vendas')}}" class="u-btn u-button-style u-hover-palette-1-dark-1 u-palette-2-base u-btn-3">learn more</a>

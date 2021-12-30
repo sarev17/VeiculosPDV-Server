@@ -84,12 +84,6 @@
                 </div>
             </div>
         </div>
-
-        @include('modals.venda');
-
-
-
-
     </section>
 
     @include('_partials.rodape')

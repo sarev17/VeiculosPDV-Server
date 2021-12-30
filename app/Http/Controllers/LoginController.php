@@ -1,6 +1,8 @@
 <?php
 
 namespace App\Http\Controllers;
+
+use App\Models\Juros;
 use Illuminate\Http\Request;
 use App\Models\User;
 class LoginController extends Controller
@@ -46,17 +48,35 @@ class LoginController extends Controller
         $name = $r->get('name');
         $password = $r->get('password');
         $usuario = User::where('name',$name)->where('password',$password)->get()->first();
-    
+        $juros = Juros::where('user_id',$usuario->id)->get()->first();
+            
+        
+
         if(isset($usuario)){
             session_start();
             $_SESSION['name'] = $usuario->name;
             $_SESSION['nivel'] = $usuario->nivel;
             $_SESSION['id'] = $usuario->id;
+            $_SESSION['validade'] = $usuario->validade;
+            $_SESSION['taxa_juros'] = $juros->taxa;
+            $_SESSION['forma_juros'] = $juros->forma;
             
             return redirect()->route('principal');
         }else{
             return redirect()->route('login',['erro'=>1]);
         }
         
+    }
+
+    public function juros(Request $r)
+    {
+        $juros = doubleval($r->taxaJuros)/100;
+        $forma = $r->formaJuros;
+        
+        Juros::where('user_id',$_SESSION['id'])->update(['taxa'=>$juros,'forma'=>$forma]);
+        $_SESSION['taxa_juros'] = $juros;
+        $_SESSION['forma_juros'] = $forma;
+        return redirect()->route('principal');
+
     }
 }

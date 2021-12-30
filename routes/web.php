@@ -84,7 +84,9 @@ Route::middleware(['autenticacao:padrao,administrador'])->prefix('/acesso')->gro
         Route::get('diaE', [PDFController::class, 'diaE'])->name('pdf.diaE');
         Route::get('MesE', [PDFController::class, 'mesE'])->name('pdf.mesE');
     });
+
     Route::get('qr_pagamento/{id}', [PagamentoController::class, 'busca_qr']);
+    Route::post('juros', [LoginController::class, 'juros'])->name('juros');
     Route::get('logout', [LoginController::class, 'logout'])->name('logout');
 });
 

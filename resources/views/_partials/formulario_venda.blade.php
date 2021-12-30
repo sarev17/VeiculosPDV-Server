@@ -1,20 +1,24 @@
 <link rel="stylesheet" href="{{ asset('css\form.css') }}" media="screen">
 
 @php
-    use App\Models\Veiculo;
-    $placa = Veiculo::where('id',key($_REQUEST))->select('placa')->get();
-    if(isset($placa[0]['placa']))
-        $p = $placa[0]['placa'];
-    else
-        $p='';
+use App\Models\Veiculo;
+$placa = Veiculo::where('id', key($_REQUEST))
+    ->select('placa')
+    ->get();
+if (isset($placa[0]['placa'])) {
+    $p = $placa[0]['placa'];
+} else {
+    $p = '';
+}
 @endphp
 
 <hr>
 <h5>DADOS DO VEICULO</h5>
 <div>
     <div class="label-float row">
-        <input value="{{$p ?? ''}}" style="background-color: rgb(241, 171, 85);" maxlength="7" required minlength=7 type="text" name="placa"
-            id="placa" class="entrada entrada-p" placeholder="PLACA" autofocus="autofocus">
+        <input value="{{ $p ?? '' }}" style="background-color: rgb(241, 171, 85);" maxlength="7" required
+            minlength=7 type="text" name="placa" id="placa" class="entrada entrada-p" placeholder="PLACA"
+            autofocus="autofocus">
         <label>PLACA</label>
     </div>
     <div class="label-float row">
@@ -69,13 +73,13 @@
 <h5>DADOS DA COMPRA</h5>
 <div>
     <div class="label-float row">
-        <input onchange="mensal()" onkeyup="mensal()" maxlength="4" required  type="number" name="parcelas" id="parcelas"
+        <input onchange="mensal()" onkeyup="mensal()" maxlength="4" required type="number" name="parcelas" id="parcelas"
             class="entrada entrada-p" placeholder="PARCELAS">
         <label>PARCELAS</label>
     </div>
     <div class="label-float row">
-        <input required onkeyup="mensal();moeda('entrada',this.value)" type="text" name="entrada" id="entrada"
-            class="entrada entrada-g" placeholder="ENTRADA">
+        <input value="0.0" required onkeyup="mensal();moeda('entrada',this.value)" type="text" name="entrada"
+            id="entrada" class="entrada entrada-g" placeholder="ENTRADA">
         <label>ENTRADA</label>
     </div>
     <div class="label-float row">
@@ -86,17 +90,17 @@
 </div>
 <div>
     <div class="label-float row">
-        <input onblur="moeda('total',this.value)" required type="text" name="total" id="total"
-            class="entrada entrada-g" placeholder="MENSALIDADE">
+        <input onblur="moeda('total',this.value)" required type="text" name="total" id="total" class="entrada entrada-g"
+            placeholder="MENSALIDADE">
         <label>VALOR TOTAL</label>
     </div>
 
     @php
-        $vencimento = date('Y-m-d', strtotime(date('Y-m-d').' + 30 days'));
+        $vencimento = date('Y-m-d', strtotime(date('Y-m-d') . ' + 30 days'));
     @endphp
 
     <div class="label-float row">
-        <input required type="date" value="{{$vencimento}}" name="vencimento" id="vencimento"
+        <input required type="date" value="{{ $vencimento }}" name="vencimento" id="vencimento"
             class="entrada entrada-g" placeholder="MENSALIDADE">
         <label>VENCIMENTO</label>
     </div>
@@ -146,44 +150,48 @@
     </div>
 </div>
 
+<div class="label-float row">
+    <input value="{{ $_SESSION['taxa_juros'] }}" type="hidden" name="taxa" id="taxa" class="entrada entrada-m">
+    <input value="{{ $_SESSION['forma_juros'] }}" type="hidden" name="forma" id="forma" class="entrada entrada-m">
+</div>
+
 <!-- Button trigger modal-->
 
 
 <!--Modal: modalPush-->
 <div class="modal fade" id="modalPush" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-  aria-hidden="true">
-  <div class="modal-dialog modal-notify modal-info" role="document">
-    <!--Content-->
-    <div class="modal-content text-center">
-      <!--Header-->
-      <div class="modal-header d-flex justify-content-center">
-        <p class="heading">Confirmar Venda</p>
-      </div>
+    aria-hidden="true">
+    <div class="modal-dialog modal-notify modal-info" role="document">
+        <!--Content-->
+        <div class="modal-content text-center">
+            <!--Header-->
+            <div class="modal-header d-flex justify-content-center">
+                <p class="heading">Confirmar Venda</p>
+            </div>
 
-      <!--Body-->
-      <div class="modal-body">
+            <!--Body-->
+            <div class="modal-body">
 
-        <i class="fa fa-shopping-cart fa-4x animated rotateIn mb-4" aria-hidden="true"></i>
+                <i class="fa fa-shopping-cart fa-4x animated rotateIn mb-4" aria-hidden="true"></i>
 
-        <p>Deseja confirmar a venda?</p>
+                <p>Deseja confirmar a venda?</p>
 
-      </div>
+            </div>
 
-      <!--Footer-->
-      <div class="modal-footer flex-center">
-        <button type="submit" class="btn btn-primary">Salvar</button>
-        <a type="button" class="btn btn-outline-info waves-effect" data-dismiss="modal">No</a>
-      </div>
+            <!--Footer-->
+            <div class="modal-footer flex-center">
+                <button type="submit" class="btn btn-primary">Salvar</button>
+                <a type="button" class="btn btn-outline-info waves-effect" data-dismiss="modal">No</a>
+            </div>
+        </div>
+        <!--/.Content-->
     </div>
-    <!--/.Content-->
-  </div>
 </div>
 <!--Modal: modalPush-->
 <hr>
 
 
 <script>
-    
     placa();
 
 
@@ -214,7 +222,7 @@
                 },
                 error: function(data, textStatus, errorThrown) {
                     console.log(data);
-                    
+
                 },
             })
         }
@@ -254,19 +262,52 @@
         }
     });
 
-    function mensal(){
+    function mensal() {
 
-        total  = parseFloat(retira_moeda('venda'));
+        total = parseFloat(retira_moeda('venda'));
         entrada = parseFloat(retira_moeda('entrada'));
         parcela = parseInt($('#parcelas').val())
-        juros = 1.1;
-        $regra = ((total-entrada)*1.1)/parcela;
-        $('#parcela').val($regra);
-        moeda('parcela',parseFloat($('#parcela').val()).toFixed(2));
-        
-        venda = (((total-entrada)*1.1)+entrada).toFixed(2);
-        $('#total').val(venda);
-        moeda('total',parseFloat($('#total').val()).toFixed(2));
-    }
+        juros = parseFloat($('#taxa').val()) + 1;
+        forma = $('#forma').val();
+        mensalValor = 0.0;
+        vendaValor = 0.0;
 
+        if (forma == 'VLT') {
+            mensalValor = ((total * juros) - entrada) / parcela;
+            vendaValor = (mensalValor * parcela) + entrada;
+        }
+        if (forma == 'VSE') {
+            mensalValor = (((total - entrada) * juros)) / parcela;
+            vendaValor = (mensalValor * parcela) + entrada;
+        }
+        if (forma == 'AAT') {
+            ano = parcela / 12;
+            mensalValor = ((((total * (juros - 1) * ano) + total)) - entrada) / parcela;
+            vendaValor = (mensalValor * parcela) + entrada;
+        }
+        if (forma == 'AAE') {
+            ano = parcela / 12;
+            mensalValor = (((((total - entrada) * (juros - 1) * ano) + total))-entrada) / parcela;
+            vendaValor = (mensalValor * parcela)+entrada;
+        }
+        if (forma == 'AMT') {
+            mensalValor = (((total * (juros - 1) * parcela) + total) - entrada) / parcela;
+            vendaValor = (mensalValor * parcela) + entrada;
+        }
+        if (forma == 'AME') {
+            mensalValor = ((((total-entrada) * (juros - 1) * parcela) + total)-entrada) / parcela;
+            vendaValor = (mensalValor * parcela)+entrada;
+        }
+
+        console.log(
+            vendaValor + " " + mensalValor + " " + forma
+        );
+
+        $('#parcela').val(mensalValor);
+        moeda('parcela', parseFloat($('#parcela').val()).toFixed(2));
+
+
+        $('#total').val(vendaValor.toFixed(2));
+        moeda('total', parseFloat($('#total').val()).toFixed(2));
+    }
 </script>
