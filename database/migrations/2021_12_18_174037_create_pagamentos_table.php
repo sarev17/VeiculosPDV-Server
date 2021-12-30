@@ -39,9 +39,7 @@ class CreatePagamentosTable extends Migration
         Schema::table('pagamentos', function (Blueprint $table) {
             $table->dropForeign('pagamentos_venda_id_foreign');
         });
-        Schema::table('pagamentos', function (Blueprint $table) {
-            $table->dropForeign('pagamentos_user_id_foreign');
-        });
+        
         Schema::dropIfExists('pagamentos');
     }
 }

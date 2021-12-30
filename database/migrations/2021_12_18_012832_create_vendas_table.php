@@ -50,9 +50,7 @@ class CreateVendasTable extends Migration
      */
     public function down()
     {
-        Schema::table('vendas', function (Blueprint $table) {
-            $table->dropForeign('vendas_user_id_foreign');
-        });
+        
         Schema::dropIfExists('vendas');
     }
 }
