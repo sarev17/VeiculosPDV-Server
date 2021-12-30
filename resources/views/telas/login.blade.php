@@ -51,7 +51,7 @@
 									</button>
 								</div>
 							</form>
-							<br><p style="background-color:red;color:white;text-align:center;font-size:12pt">{{isset($erro) && $erro!='' ? $erro : ''}}</p>
+							<br><p style="color:red;text-align:center"> {{isset($erro) ? $erro : ''}}</p>
 						</div>
 					</div>
 					<div class="footer">

@@ -1,9 +1,9 @@
 @php
     use App\Models\Veiculo;
-    $compra = floatVal(Veiculo::select('compra')->sum('compra'));
-    $venda = floatVal(Veiculo::select('venda')->sum('venda'));
-    $totalCarro = Veiculo::where('produto','=','Carro')->count();
-    $totalMoto = Veiculo::where('produto','=','Moto')->count();
+    $compra = floatVal(Veiculo::where('user_id',$_SESSION['id'])->select('compra')->sum('compra'));
+    $venda = floatVal(Veiculo::where('user_id',$_SESSION['id'])->select('venda')->sum('venda'));
+    $totalCarro = Veiculo::where('user_id',$_SESSION['id'])->where('produto','=','Carro')->count();
+    $totalMoto = Veiculo::where('user_id',$_SESSION['id'])->where('produto','=','Moto')->count();
     $lucro = $venda-$compra 
 @endphp
     

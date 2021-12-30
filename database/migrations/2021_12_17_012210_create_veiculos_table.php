@@ -15,6 +15,7 @@ class CreateVeiculosTable extends Migration
     {
         Schema::create('veiculos', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('user_id');
             $table->string('placa',7);
             $table->string('produto',20);
             $table->string('marca',20);
@@ -27,6 +28,8 @@ class CreateVeiculosTable extends Migration
             $table->decimal('venda',8,2);
             $table->string('obs',500)->nullable();
             $table->timestamps();
+
+            $table->foreign('user_id')->references('id')->on('users');
         });
     }
 
@@ -37,6 +40,9 @@ class CreateVeiculosTable extends Migration
      */
     public function down()
     {
+        Schema::table('veiculos', function (Blueprint $table) {
+            $table->dropForeign('veiculos_user_id_foreign');
+        });
         Schema::dropIfExists('veiculos');
     }
 }

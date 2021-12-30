@@ -14,7 +14,7 @@ class VendaController extends Controller
         date_default_timezone_set("America/Sao_Paulo");
         $venda = new Venda;
 
-        $id_veiculo = array(Veiculo::where('placa', $request->placa)->select('id')->get());
+        $id_veiculo = array(Veiculo::where('user_id',$_SESSION['id'])->where('placa', $request->placa)->select('id')->get());
         $id = $id_veiculo[0][0]['id'];
 
         $entrada = floatval(preg_replace('/\D/', '', $request->entrada)) / 100;
@@ -22,6 +22,7 @@ class VendaController extends Controller
         $total = floatval(preg_replace('/\D/', '', $request->total)) / 100;
 
 
+        $venda->user_id = $_SESSION['id'];
         $venda->cliente = $request->cliente;
         $venda->cpf = $request->cpf;
         $venda->cep = $request->cep;
@@ -49,6 +50,7 @@ class VendaController extends Controller
         $pagar = new Pagamento;
 
         if (floatval($venda->entrada) > 0) {
+            $pagar->user_id = $_SESSION['id'];
             $pagar->venda_id = $venda_id[0]['id'];
             $pagar->cliente = $request->cliente;
             $pagar->cpf = $request->cpf;
@@ -60,7 +62,7 @@ class VendaController extends Controller
 
         Veiculo::findOrFail($id)->delete();
         echo '<script>alert("Venda Realizada!")</script>';
-        return view('telas.principal');
+        return redirect()->route('principal');
         //*/
 
     }
@@ -69,7 +71,7 @@ class VendaController extends Controller
     { {
             //return $dataTable->render('telas.dados.estoque');
             //$produtos = Veiculo::orderby('id', 'desc')->paginate();
-            $produtos = Venda::get();
+            $produtos = Venda::where('user_id',$_SESSION['id'])->get();
             return view('telas.dados.vendas', ['produtos' => $produtos]);
         }
     }
@@ -79,7 +81,7 @@ class VendaController extends Controller
     {
         $dados = explode('d', key($_REQUEST));
 
-        $dados = Venda::whereBetween('created', array($dados[1], $dados[0]))->get();
+        $dados = Venda::where('user_id',$_SESSION['id'])->whereBetween('created', array($dados[1], $dados[0]))->get();
 
         return view('telas.dados.vendas', ['produtos' => $dados]);
     }

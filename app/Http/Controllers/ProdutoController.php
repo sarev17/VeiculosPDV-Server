@@ -5,17 +5,20 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Veiculo;
 use App\DataTables\EstoqueDataTable;
+use App\Http\Middleware\LogAcessoMiddleware;
 
 class ProdutoController extends Controller
 {
+
     public function store(Request $request)
     {
         date_default_timezone_set ("America/Sao_Paulo");
         $veiculo = new Veiculo;
 
-        if (sizeof(Veiculo::where('placa', $request->placa)->get())) {
-            return view('telas.Cadastrar');
+        if (sizeof(Veiculo::where('user_id',$_SESSION['id'])->where('placa', $request->placa)->get())) {
+            return redirect()->route('cadastrar');
         } else {
+            $veiculo->user_id = $_SESSION['id'];
             $veiculo->placa = $request->placa;
             $veiculo->produto = $request->produto;
             $veiculo->modelo = $request->modelo;
@@ -32,13 +35,13 @@ class ProdutoController extends Controller
 
             echo "<script>alert('Salvo com sucesso')</script>";
             $veiculo->save();
-            return view('telas.Cadastrar');
+            return redirect()->route('cadastrar');
         }
     }
 
     public function listar()
     {
-        $produtos = Veiculo::get();
+        $produtos = Veiculo::where('user_id',$_SESSION['id'])->get();
         return view('telas.dados.estoque', ['produtos' => $produtos]);
     }
 

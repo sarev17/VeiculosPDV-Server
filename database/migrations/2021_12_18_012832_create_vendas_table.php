@@ -17,6 +17,7 @@ class CreateVendasTable extends Migration
             $table->id();
             
             $table->string('cliente',200);
+            $table->unsignedBigInteger('user_id');
             $table->string('cpf',14);
             $table->string('cep',9);
             $table->string('endereco',1000);
@@ -35,6 +36,8 @@ class CreateVendasTable extends Migration
             $table->Integer('pagas')->default(0);
             $table->string('status',10)->default('aberta');
 
+            $table->foreign('user_id')->references('id')->on('users');
+
             $table->timestamps();
         });
     }
@@ -46,7 +49,9 @@ class CreateVendasTable extends Migration
      */
     public function down()
     {
-
+        Schema::table('vendas', function (Blueprint $table) {
+            $table->dropForeign('vendas_user_id_foreign');
+        });
         Schema::dropIfExists('vendas');
     }
 }

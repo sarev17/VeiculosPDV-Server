@@ -32,6 +32,13 @@
                                     <a class="dropdown-item" role="presentation" href="{{ route('vendas') }}">VENDAS</a>
                                 </div>
                             </li>
+                            <li class="dropdown">
+                                <a class="dropdown-toggle nav-link dropdown-toggle" data-toggle="dropdown"
+                                    aria-expanded="false" href="#">{{$_SESSION['name']}}</a>
+                                <div class="dropdown-menu" role="menu">
+                                    <a class="dropdown-item" role="presentation" href="{{route('logout')}}">SAIR</a>
+                                </div>
+                            </li>
                         </ul>
                     </div>
                 </div>

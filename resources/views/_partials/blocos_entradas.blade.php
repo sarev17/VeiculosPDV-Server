@@ -25,8 +25,8 @@ $mesI = date('Y-m').'-01 00:00:00';
                                     </div>
                                     <div class="media-body text-right">
                                         <h3>{{$hoje}}</h3>
-                                        <span>Total de entradas: {{Pagamento::where('updated_at','>',$hojeI)->where('updated_at','<',$hojeF)->count()}}</span><br>
-                                        <span>Total recebido: <b>R$ {{number_format(Pagamento::where('updated_at','>',$hojeI)->where('updated_at','<',$hojeF)->sum('total'),2,',','.')}}</b></span>
+                                        <span>Total de entradas: {{Pagamento::where('user_id',$_SESSION['id'])->where('updated_at','>',$hojeI)->where('updated_at','<',$hojeF)->count()}}</span><br>
+                                        <span>Total recebido: <b>R$ {{number_format(Pagamento::where('user_id',$_SESSION['id'])->where('updated_at','>',$hojeI)->where('updated_at','<',$hojeF)->sum('total'),2,',','.')}}</b></span>
                                         <div style="padding:10px">
                                             <a href="{{route('pdf.diaE')}}" target="_blank"><i class="fas fa-file-pdf fa-2x text-danger"></i></a>
                                             &nbsp;<i class="fas fa-file-csv fa-2x text-info"></i>
@@ -47,8 +47,8 @@ $mesI = date('Y-m').'-01 00:00:00';
                                     </div>
                                     <div class="media-body text-right">
                                         <h3>{{$mes[$numero_mes].' '.date('Y')}}</h3>
-                                        <span>Total de entradas: {{Pagamento::where('updated_at','>',$mesI)->where('updated_at','<',$hojeF)->count()}}</span><br>
-                                        <span>Total recebido: <b>R$ {{number_format(Pagamento::where('updated_at','>',$mesI)->where('updated_at','<',$hojeF)->sum('total'),2,',','.')}}</b></span>
+                                        <span>Total de entradas: {{Pagamento::where('user_id',$_SESSION['id'])->where('updated_at','>',$mesI)->where('updated_at','<',$hojeF)->count()}}</span><br>
+                                        <span>Total recebido: <b>R$ {{number_format(Pagamento::where('user_id',$_SESSION['id'])->where('updated_at','>',$mesI)->where('updated_at','<',$hojeF)->sum('total'),2,',','.')}}</b></span>
                                         <div style="padding:10px">
                                             <a href="{{route('pdf.mesE')}}" target="_blank"><i class="fas fa-file-pdf fa-2x text-danger"></i></a>
                                             &nbsp;<i class="fas fa-file-csv fa-2x text-info"></i>

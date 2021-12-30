@@ -37,7 +37,7 @@
                         <div class="u-container-layout u-similar-container u-container-layout-1">
                             <h4 class="u-text u-text-white u-text-3">Cadastrar produto</h4><span
                                 class="u-file-icon u-hover-feature u-icon u-icon-rectangle u-opacity u-opacity-55 u-text-black u-icon-1"
-                                data-href="{{ route('cadastrar') }}" data-page-id="2222313748"><img src="images/2.png"
+                                data-href="{{ route('cadastrar') }}" data-page-id="2222313748"><img src="{{asset('images/2.png')}}"
                                     alt=""></span>
                         </div>
                     </div>
@@ -47,7 +47,7 @@
                             <h4 class="u-text u-text-white u-text-4">Vender<br>Produto
                             </h4><span
                                 class="u-file-icon u-hover-feature u-icon u-icon-rectangle u-opacity u-opacity-55 u-text-black u-icon-2"
-                                data-href="{{ route('vender') }}" data-page-id="97698535"><img src="images/3.png"
+                                data-href="{{ route('vender') }}" data-page-id="97698535"><img src="{{asset('images/3.png')}}"
                                     alt=""></span>
                         </div>
                     </div>
@@ -56,7 +56,7 @@
                         <div class="u-container-layout u-similar-container u-container-layout-3">
                             <h4 class="u-text u-text-white u-text-5">Receber pagamento</h4><span
                                 class="u-file-icon u-hover-feature u-icon u-icon-rectangle u-opacity u-opacity-55 u-text-black u-icon-3"
-                                data-href="{{ route('pagamento') }}" data-page-id="268711124"><img src="images/4.png"
+                                data-href="{{ route('pagamento') }}" data-page-id="268711124"><img src="{{asset('images/4.png')}}"
                                     alt=""></span>
                         </div>
                     </div>
@@ -67,7 +67,7 @@
                             <h4 class="u-text u-text-white u-text-7">Simular<br>
                             </h4><span
                                 class="u-file-icon u-hover-feature u-icon u-icon-rectangle u-opacity u-opacity-55 u-text-black u-icon-5"
-                                data-href="https://nicepage.com"><img src="images/677109.png" alt=""></span>
+                                data-href="https://nicepage.com"><img src="{{asset('images/67710')}}9.png" alt=""></span>
                         </div>
                     </div>
                     <div
@@ -76,7 +76,7 @@
                             <h4 class="u-text u-text-white u-text-6">Dados
                             </h4><span
                                 class="u-file-icon u-hover-feature u-icon u-icon-rectangle u-opacity u-opacity-55 u-text-black u-icon-4"
-                                data-href="{{ route('dado') }}" data-page-id="147209408"><img src="images/5.png"
+                                data-href="{{ route('dado') }}" data-page-id="147209408"><img src="{{asset('images/5.png')}}"
                                     alt=""></span>
                         </div>
                     </div>

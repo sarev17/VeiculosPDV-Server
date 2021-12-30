@@ -5,14 +5,27 @@ use Illuminate\Http\Request;
 use App\Models\User;
 class LoginController extends Controller
 {
-    public function index(Request $r)
+
+    public function principal(Request $request)
     {
-        
+        return view('telas.principal');
+    }
+
+    public function index(Request $r)
+    {  
         $erro = '';
         if($r->get('erro')==1){
-            $erro = 'Dados inválidos';
+            $erro = 'DADOS INVÁLIDOS!';
+        }
+        if($r->get('erro')==2){
+            $erro = 'LOGIN NECESSÁRIO';
         }
         return view('telas.login',['erro'=>$erro]);
+    }
+
+    public function logout(){
+        session_destroy();
+        return redirect()->route('login');
     }
 
     public function autenticar(Request $r)
@@ -33,12 +46,17 @@ class LoginController extends Controller
         $name = $r->get('name');
         $password = $r->get('password');
         $usuario = User::where('name',$name)->where('password',$password)->get()->first();
-
+    
         if(isset($usuario)){
-            return view('telas.principal');
+            session_start();
+            $_SESSION['name'] = $usuario->name;
+            $_SESSION['nivel'] = $usuario->nivel;
+            $_SESSION['id'] = $usuario->id;
+            
+            return redirect()->route('principal');
         }else{
             return redirect()->route('login',['erro'=>1]);
         }
-
+        
     }
 }

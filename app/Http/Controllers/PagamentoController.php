@@ -15,6 +15,9 @@ class PagamentoController extends Controller
         date_default_timezone_set("America/Sao_Paulo");
         $p = new Pagamento;
         $v = new Venda;
+        
+        //testando se pagamento ja foi registrado
+
 
         $atual = explode('/', $r->pagas);
 
@@ -32,6 +35,13 @@ class PagamentoController extends Controller
 
         $total = floatval(preg_replace('/\D/', '', $r->total)) / 100;
 
+        $teste = Pagamento::where('veiculo',$r->veiculo)->where('referencia',$ref)->count();
+
+        if($teste>0){
+            return redirect()->route('principal');
+        }
+
+        $p->user_id = $_SESSION['id'];
         $p->cliente = $r->cliente;
         $p->cpf = $r->cpf;
         $p->cliente = $r->cliente;
@@ -52,7 +62,6 @@ class PagamentoController extends Controller
         }
 
         $p->save();
-        echo '<script>alert("Salvo")</script>';
 
         $pdf = App::make('dompdf.wrapper');
         $pdf->loadHTML(view('PDF.comp_pagamento', ['r' => $r]))->setPaper('A4', 'portrait');
@@ -65,20 +74,20 @@ class PagamentoController extends Controller
     { {
             //return $dataTable->render('telas.dados.estoque');
             //$produtos = Veiculo::orderby('id', 'desc')->paginate();
-            $produtos = Pagamento::get();
+            $produtos = Pagamento::where('user_id',$_SESSION['id'])->get();
             return view('telas.dados.entradas', ['produtos' => $produtos]);
         }
     }
     public function date()
     {
         $dados = explode('d', key($_REQUEST));
-        $dados = Pagamento::whereBetween('created_at', array($dados[0] . ' 00:00:00', $dados[1] . ' 23:59:59'))->get();
+        $dados = Pagamento::where('user_id',$_SESSION['id'])->whereBetween('created_at', array($dados[0] . ' 00:00:00', $dados[1] . ' 23:59:59'))->get();
         return view('telas.dados.entradas', ['produtos' => $dados]);
     }
 
     public function busca_qr(Venda $id)
     {
-        $pagamentos = Pagamento::where('venda_id', '=', $id->id)->get();
+        $pagamentos = Pagamento::where('user_id',$_SESSION['id'])->where('venda_id', '=', $id->id)->get();
 
         $pdf = App::make('dompdf.wrapper');
         $pdf->loadHTML(view('comprovantes.pagamento', ['produtos' => $pagamentos]))->setPaper('A4', 'portrait');
