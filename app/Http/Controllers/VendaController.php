@@ -22,6 +22,7 @@ class VendaController extends Controller
         $total = floatval(preg_replace('/\D/', '', $request->total)) / 100;
 
 
+        $venda->vencimento = $request->vencimento;
         $venda->user_id = $_SESSION['id'];
         $venda->cliente = $request->cliente;
         $venda->cpf = $request->cpf;

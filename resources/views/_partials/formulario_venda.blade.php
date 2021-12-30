@@ -87,8 +87,18 @@
 <div>
     <div class="label-float row">
         <input onblur="moeda('total',this.value)" required type="text" name="total" id="total"
-            class="entrada entrada-sg" placeholder="MENSALIDADE">
+            class="entrada entrada-g" placeholder="MENSALIDADE">
         <label>VALOR TOTAL</label>
+    </div>
+
+    @php
+        $vencimento = date('Y-m-d', strtotime(date('Y-m-d').' + 30 days'));
+    @endphp
+
+    <div class="label-float row">
+        <input required type="date" value="{{$vencimento}}" name="vencimento" id="vencimento"
+            class="entrada entrada-g" placeholder="MENSALIDADE">
+        <label>VENCIMENTO</label>
     </div>
 </div>
 

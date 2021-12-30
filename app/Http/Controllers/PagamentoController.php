@@ -34,9 +34,9 @@ class PagamentoController extends Controller
         $parc = intval($atual[0]);
 
         $total = floatval(preg_replace('/\D/', '', $r->total)) / 100;
-
         $teste = Pagamento::where('veiculo',$r->veiculo)->where('referencia',$ref)->count();
 
+        $vencimento = date('Y-m-d', strtotime($r->vencimento.' + 30 days'));
         if($teste>0){
             return redirect()->route('principal');
         }
@@ -54,7 +54,7 @@ class PagamentoController extends Controller
 
 
         //atualizando pagamento na tabela vendas
-        Venda::where('id', $r->idv)->update(['pagas' => $refA]);
+        Venda::where('id', $r->idv)->update(['pagas' => $refA,'vencimento'=>$vencimento]);
 
         //testando se restam parcelas
         if (intval($atual[0]) == intval($atual[1])) {

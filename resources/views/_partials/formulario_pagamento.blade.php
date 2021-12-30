@@ -45,6 +45,11 @@
     <div class='label-float row'>
         <input required type="hidden" name="idv" id="idv" class="entrada entrada-G">
     </div>
+    <div class="label-float row">
+        <input required type="date" value="" name="vencimento" id="vencimento"
+            class="entrada entrada-g" placeholder="MENSALIDADE">
+        <label>VENCIMENTO</label>
+    </div>
 
 </div>
 
@@ -151,6 +156,7 @@
                                     .toFixed(2));
                                 $('#total').focus();
                                 $('#idv').val(dados['id']);
+                                $('#vencimento').val(dados['vencimento']);
 
                             },
                             error: function(data, textStatus, errorThrown) {
