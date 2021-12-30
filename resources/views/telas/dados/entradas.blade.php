@@ -3,9 +3,9 @@
     @include('_partials.estilos')
     @include('_partials.cabecalho')
     <script src="{{ asset('datatables/jquery.dataTables.min.js') }}"></script>
-<script src="{{ asset('datatables/dataTables.bootstrap4.min.js') }}"></script>
-<script src="{{ asset('datatables/datatables-demo.js') }}"></script>
-<link href="{{ asset('datatables/dataTables.bootstrap4.min.css') }}" rel="stylesheet">
+    <script src="{{ asset('datatables/dataTables.bootstrap4.min.js') }}"></script>
+    <script src="{{ asset('datatables/datatables-demo.js') }}"></script>
+    <link href="{{ asset('datatables/dataTables.bootstrap4.min.css') }}" rel="stylesheet">
     <!-- DataTales Example -->
     <h3 style="text-align:center;padding-top:30px">Entradas</h3>
     @include('_partials.blocos_entradas')
@@ -23,7 +23,7 @@
                             <th>Data Pagamento</th>
 
 
-                            
+
                         </tr>
                     </thead>
 
@@ -40,7 +40,7 @@
                                 <td>R$ {{ $valor }}</td>
                                 <td>{{ $produto->created_at }}</td>
 
-                                
+
                                 @include('_partials.btn_datatable')
                             </tr>
                         @endforeach

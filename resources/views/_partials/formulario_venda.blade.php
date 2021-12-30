@@ -1,15 +1,16 @@
 <link rel="stylesheet" href="{{ asset('css\form.css') }}" media="screen">
 
+
 @php
-use App\Models\Veiculo;
-$placa = Veiculo::where('id', key($_REQUEST))
-    ->select('placa')
-    ->get();
-if (isset($placa[0]['placa'])) {
-    $p = $placa[0]['placa'];
-} else {
-    $p = '';
-}
+    use App\Models\Veiculo;
+    $placa = Veiculo::where('id', key($_REQUEST))
+        ->select('placa')
+        ->get();
+    if (isset($placa[0]['placa'])) {
+        $p = $placa[0]['placa'];
+    } else {
+        $p = '';
+    }
 @endphp
 
 <hr>
@@ -287,16 +288,16 @@ if (isset($placa[0]['placa'])) {
         }
         if (forma == 'AAE') {
             ano = parcela / 12;
-            mensalValor = (((((total - entrada) * (juros - 1) * ano) + total))-entrada) / parcela;
-            vendaValor = (mensalValor * parcela)+entrada;
+            mensalValor = (((((total - entrada) * (juros - 1) * ano) + total)) - entrada) / parcela;
+            vendaValor = (mensalValor * parcela) + entrada;
         }
         if (forma == 'AMT') {
             mensalValor = (((total * (juros - 1) * parcela) + total) - entrada) / parcela;
             vendaValor = (mensalValor * parcela) + entrada;
         }
         if (forma == 'AME') {
-            mensalValor = ((((total-entrada) * (juros - 1) * parcela) + total)-entrada) / parcela;
-            vendaValor = (mensalValor * parcela)+entrada;
+            mensalValor = ((((total - entrada) * (juros - 1) * parcela) + total) - entrada) / parcela;
+            vendaValor = (mensalValor * parcela) + entrada;
         }
 
         console.log(

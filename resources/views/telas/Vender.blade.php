@@ -9,15 +9,16 @@
     <meta name="page_type" content="np-template-header-footer-from-plugin">
     <title>Vender</title>
 
-    <link rel="stylesheet" href="css\Vender.css" media="screen">
+    <link rel="stylesheet" href="{{ asset('css\Vender.css') }}" media="screen">
     @include('_partials.estilos')
     <meta name="theme-color" content="#478ac9">
     <meta property="og:title" content="Vender">
     <meta property="og:type" content="website">
-<link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" />
-<script src="http://code.jquery.com/jquery-1.9.1.js"></script>
-<script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
-    
+    <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" />
+    <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+    <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
+
+
 </head>
 
 <body class="u-body">
@@ -29,11 +30,11 @@
                     <h2 class="u-align-center u-custom-font u-font-montserrat u-text u-text-1">Venda de Veículo</h2>
                     <div class="u-align-center u-form u-form-1">
 
-                        @include("_partials.js")
-                        <form action="{{route('venda.salvar')}}" method="post">
+                        <form action="{{ route('venda.salvar') }}" method="post">
                             @csrf
                             @include('_partials.formulario_venda')
-                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalPush">Continuar</button>
+                            <button type="button" class="btn btn-primary" data-toggle="modal"
+                                data-target="#modalPush">Continuar</button>
                             <a href="{{ route('principal') }}"> <button type="button"
                                     class="btn btn-secondary">Cancelar</button></a>
                         </form>
@@ -65,3 +66,4 @@
 </body>
 
 </html>
+@include("_partials.js")

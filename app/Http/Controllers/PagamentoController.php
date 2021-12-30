@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Info;
 use Illuminate\Http\Request;
 use App\Models\Pagamento;
+use App\Models\User;
 use App\Models\Venda;
 use Facade\FlareClient\Http\Client;
 use Illuminate\Support\Facades\App;
@@ -63,8 +65,10 @@ class PagamentoController extends Controller
 
         $p->save();
 
+        $u = Info::where('user_id',$_SESSION['id'])->get()->first();
+
         $pdf = App::make('dompdf.wrapper');
-        $pdf->loadHTML(view('PDF.comp_pagamento', ['r' => $r]))->setPaper('A4', 'portrait');
+        $pdf->loadHTML(view('PDF.comp_pagamento', ['r' => $r,'u'=>$u]))->setPaper('A4', 'portrait');
         return $pdf->stream('Comprovante ' . date('Y') . '.pdf', ['Attachment' => false]);
         //return view('PDF.entradas', ['pagamentos' => $pagamentos, 'total' => $total, 'entradas' => $entradas,'hoje'=>$hoje,'responsavel'=>$responsavel]);
 

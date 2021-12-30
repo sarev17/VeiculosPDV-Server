@@ -26,8 +26,12 @@ require $pathW;
 
     @page {
         margin-top: 1cm;
-        size: 80mm 120mm;
-        font-size: 8pt;
+        size: 80mm 160mm;
+        font-size: 9pt;
+    }
+
+    p{
+        text-transform:uppercase;
     }
 
 </style>
@@ -59,7 +63,9 @@ require $pathW;
 </div>
 <hr>
 <div>
-<p>Favorecido: Marcos Motos - 999.999.9999/99<br>DESC: {{$r->veiculo}}<br><b>REF: {{$r->pagas}}</b></p>
+<p>Fav: <b>{{$u->nome}} - {{$u->cpf}}</b><br>End. {{$u->rua}}, {{$u->numero}}, {{$u->bairro}}, {{$u->cidade}}-{{$u->estado}}</p>
+<hr>
+<p>DESC: {{$r->veiculo}} <br><b>REF: {{$r->pagas}}</b></p>
 <p style="text-align:right">PAGO EM: {{date('d/m/Y')}}</p>
 <div class="center">
     @php

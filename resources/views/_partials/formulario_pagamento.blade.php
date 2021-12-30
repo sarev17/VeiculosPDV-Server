@@ -1,10 +1,11 @@
 <link rel="stylesheet" href="{{ asset('css\form.css') }}" media="screen">
 <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
 <link rel="stylesheet" href="//code.jquery.com/ui/1.13.0/themes/base/jquery-ui.css">
-<link rel="stylesheet" href="/resources/demos/style.css">
+
 <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
 <script src="https://code.jquery.com/ui/1.13.0/jquery-ui.js"></script>
 
+ 
 
 <div>
     <div class='label-float row'>
@@ -12,7 +13,7 @@
         <label for="placa">CLIENTE</label>
     </div>
     <div class="label-float row">
-        <input maxlength="14" onkeyup="cpfF(this.value)" required type="text" name="cpf" id="cpf"
+        <input maxlength="14" required type="text" name="cpf" id="cpf"
             class="entrada entrada-m" placeholder="CPF">
         <label>CPF</label>
     </div>
@@ -140,8 +141,9 @@
                                 _token: '{{ csrf_token() }}'
                             },
                             success: function(data) {
-                                console.log(data);
+                                //console.log(data);
                                 dados = JSON.parse(data);
+                                
                                 $('#cliente').val(clienteN);
                                 $('#cpf').val(dados['cpf']);
                                 $('#veiculo').val(dados['marca'] + " " +

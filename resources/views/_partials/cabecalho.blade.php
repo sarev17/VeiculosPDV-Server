@@ -39,7 +39,8 @@
                             <a class="dropdown-toggle nav-link dropdown-toggle" data-toggle="dropdown"
                                 aria-expanded="false" href="#">{{ $_SESSION['name'] }}</a>
                             <div class="dropdown-menu" role="menu">
-                                <a class="dropdown-item" role="presentation" data-toggle="modal" data-target="#modalCookie1" href="#">JUROS</a>
+                                <a class="dropdown-item" role="presentation" data-toggle="modal" data-target="#modalDados" href="#">DADOS DA EMPRESA</a>
+                                <a class="dropdown-item" role="presentation" data-toggle="modal" data-target="#modalCookie1" href="#">CALCULO DE JUROS</a>
                                 <a style="background-color:gray" class="dropdown-item" role="presentation" href="{{ route('logout') }}">SAIR</a>
 
                                 @php
@@ -48,6 +49,7 @@
                                     USUARIO</a>';
                                     }
                                 @endphp
+
                             </div>
 
                         </li>
@@ -58,3 +60,4 @@
         </nav>
     </div>
     @include('modals.juros');
+    @include('modals.dados');
