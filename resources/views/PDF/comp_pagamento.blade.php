@@ -4,10 +4,10 @@ $pathW = 'C:\Users\Andre Veras\Documents\laravel\PDV\VeiculosPDV\VeiculosPDV-Ser
 
 try{
     require $pathW;
-    $pathC = 'C:\Users\Andre Veras\Documents\laravel\PDV\VeiculosPDV\VeiculosPDV-Server\public\phpqrcode\qrlib.php';
+    $pathC = $pathW 
 }catch(Exception $e){
-    require $pathW;
-    $pathC = '/var/www/VeiculosPDV/public/phpqrcode/qrlib.php';
+    require $pathL;
+    $pathC = $pathL
 }
 
 @endphp
