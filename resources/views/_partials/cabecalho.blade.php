@@ -59,6 +59,6 @@
             </div>
         </nav>
     </div>
-    @include('modals.juros');
-    @include('modals.dados');
-    @include('modals.novo');
+    @include('modals.juros')
+    @include('modals.dados')
+    @include('modals.novo')

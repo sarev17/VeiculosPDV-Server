@@ -1,7 +1,15 @@
 @php
 $pathL = '/var/www/VeiculosPDV/public/phpqrcode/qrlib.php';
 $pathW = 'C:\Users\Andre Veras\Documents\laravel\PDV\VeiculosPDV\VeiculosPDV-Server\public\phpqrcode\qrlib.php';
-require $pathW;
+
+try{
+    require $pathW;
+    $pathC = 'C:\Users\Andre Veras\Documents\laravel\PDV\VeiculosPDV\VeiculosPDV-Server\public\phpqrcode\qrlib.php';
+}catch(Exception $e){
+    require $pathW;
+    $pathC = '/var/www/VeiculosPDV/public/phpqrcode/qrlib.php';
+}
+
 @endphp
 
 <style>
