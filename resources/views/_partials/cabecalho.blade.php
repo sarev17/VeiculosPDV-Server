@@ -45,7 +45,7 @@
 
                                 @php
                                     if ($_SESSION['nivel'] == 'administrador') {
-                                        echo   '<a class="dropdown-item" role="presentation" href="'. route('logout').'">CADASTRAR
+                                        echo   '<a class="dropdown-item" role="presentation" data-toggle="modal" data-target="#modalnovo" href="#">CADASTRAR
                                     USUARIO</a>';
                                     }
                                 @endphp
@@ -61,3 +61,4 @@
     </div>
     @include('modals.juros');
     @include('modals.dados');
+    @include('modals.novo');

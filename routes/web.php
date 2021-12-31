@@ -88,6 +88,7 @@ Route::middleware(['autenticacao:padrao,administrador'])->prefix('/acesso')->gro
     Route::get('qr_pagamento/{id}', [PagamentoController::class, 'busca_qr']);
     Route::post('info', [LoginController::class, 'info'])->name('info');
     Route::post('juros', [LoginController::class, 'juros'])->name('juros');
+    Route::post('novo_user', [LoginController::class, 'novo_user'])->name('novo_user');
     Route::get('logout', [LoginController::class, 'logout'])->name('logout');
 });
 

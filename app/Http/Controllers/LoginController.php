@@ -52,11 +52,9 @@ class LoginController extends Controller
         $name = $r->get('name');
         $password = $r->get('password');
         $usuario = User::where('name', $name)->where('password', $password)->get()->first();
-        $juros = Juros::where('user_id', $usuario->id)->get()->first();
-
-
 
         if (isset($usuario)) {
+            $juros = Juros::where('user_id', $usuario->id)->get()->first();
             session_start();
             $_SESSION['name'] = $usuario->name;
             $_SESSION['nivel'] = $usuario->nivel;
@@ -104,4 +102,30 @@ class LoginController extends Controller
         $i->save();
         return redirect()->route('principal');
     }
+
+    public function novo_user(Request $r)
+    {
+     
+        User::create(['name'=>$r->userm,'password'=>$r->senham,'nivel'=>$r->nivelm,'validade'=>$r->vencimentom]);
+        $id = User::where('name',$r->userm)->get('id')->first();
+        Juros::create(['user_id'=>$id->id,'taxa'=>$r->taxam,'forma'=>$r->formam]);
+        
+        $i = new Info;
+
+        $i->nome = $r->nomem;
+        $i->cpf = $r->cpfm;
+        $i->cep = $r->cepm;
+        $i->rua = $r->ruam;
+        $i->bairro = $r->bairrom;
+        $i->numero = $r->numerom;
+        $i->cidade = $r->cidadem;
+        $i->estado = $r->estadom;
+        $i->user_id = $id->id;
+
+        $i->save();
+
+        return redirect()->route('principal');
+
+    }
+
 }
