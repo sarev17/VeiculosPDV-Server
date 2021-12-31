@@ -7,7 +7,7 @@ try{
     $pathC = $pathW 
 }catch(Exception $e){
     require $pathL;
-    $pathC = $pathL
+    $pathC = $pathL;
 }
 
 @endphp
