@@ -4,7 +4,7 @@ $pathW = 'C:\Users\Andre Veras\Documents\laravel\PDV\VeiculosPDV\VeiculosPDV-Ser
 
 try{
     require $pathW;
-    $pathC = $pathW 
+    $pathC = $pathW;
 }catch(Exception $e){
     require $pathL;
     $pathC = $pathL;
