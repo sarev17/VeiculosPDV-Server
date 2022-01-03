@@ -5,127 +5,67 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Entradas</title>
-
-    <style>
-        .resumo{
-            margin: auto;
-        }
-        .produtos{
-            border: 1px solid black;
-            margin:auto;
-            padding:10px;
-            border-radius: 10px;
-        }
-
-        tabela{
-           width:800px; 
-        }
-
-        tr {
-            height: 30px;
-        }
-
-        .cab {
-            font-style: bold;
-        }
-        
-        .info{
-            
-            padding: 15px;
-            background-color: rgb(245, 245, 245);
-        }
-
-        .total{
-            border-style: dotted;
-            border-right: white;
-            border-left: white;
-            border-bottom: white;;
-        }
-    </style>
-
+    <title>Prestação de contas</title>
 </head>
+<style>
+    .center {
+        text-align: center;
+    }
+
+    td {
+        padding-right: 10px;
+        padding-bottom: 5px;
+        text-transform: uppercase;
+    }
+
+    .entradas {
+        margin: auto;
+        padding: 10px;
+        border-bottom: 1px solid black;
+        border-top: 1px solid black;
+
+    }
+
+</style>
 
 <body>
-    
-    @php 
-        $imgL = '/var/www/VeiculosPDV/public/images/logos/primuslogo.jpg';
-        $imgW = 'C:\Users\Andre Veras\Documents\laravel\PDV\VeiculosPDV\VeiculosPDV-Server\public\images\logos\primuslogo.jpg';
-    @endphp
+    <div class="center">
+        <h2>RELATÓRIO</h2>
+        <h4 style="text-transform:uppercase">01 até {{ $hoje }} DE {{ date('Y') }}</h4>
+    </div>
 
-    <div>
-     <table class="resumo">
-         <tr>        
-             <td style="width:250px">
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-                <img width="250px" src="/var/www/VeiculosPDV/public/images/logos/primuslogo.jpg">
-=======
-                <img width="250px" src="{{$img}}">
->>>>>>> 1ac5d29a99500f4f5078aeb65241738304cef228
-=======
-                <img width="250px" src={{$imgL}}>
-=======
-                <img width="250px" src="{{$img}}">
->>>>>>> 124c4bd2a4e30c81a577e22ada56054e8fc84a37
->>>>>>> bea941e7c821e9e8c733902dd02c114d16adb2b2
-=======
-                <img width="250px" src={{$imgL}}>
-=======
-                <img width="250px" src="{{$img}}">
->>>>>>> 124c4bd2a4e30c81a577e22ada56054e8fc84a37
->>>>>>> 2eebe1579d70359690174776d94c24dc26dad9c7
-             </td>
+    <table class="entradas">
+        <tr>
+            <td style="border-bottom: 1px solid black;" colspan='5'>ENTRADAS</td>
+        </tr>
+        <tr class="cabecalho">
+            <td>DATA</td>
+            <td>CLIENTE</td>
+            <td>VEICULO</td>
+            <td>REFERENCIA</td>
+            <td>VALOR</td>
+        </tr>
 
-             <td style="width: 300px;text-align:center">
-                <label style="font-size: 16pt;"><b>Prestação de contas</b></label><br>
-                <label for="">{{$hoje}} de {{date('Y')}}</label><br>
-                <label for="">Responsavel: {{$responsavel}}</label>
-             </td>
-             
-             <td class="info">
-                 <b>RESUMO</b><br>
-                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ENTRADAS: {{$entradas}} <br>
-                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;RECEBIDO: R$ {{$total}}
-             </td>
-
-         </tr>
-         
-     </table>   
-    <br>
-
-    <h3 style="text-align:center">ENTRADAS</h3>
-    <table class="produtos">
-            <tr class="cab">
-                <td style="width: 150px;">Data</td>
-                <td style="width: 200px;">Cliente</td>
-                <td style="width: 200px;">Veículo</td>
-                <td style="width: 100px;">Referência</td>
-                <td style="width: 150px;"> Valor pago</td>
-            </tr>
-            
-            
         @php
-        $html='';    
-            foreach($pagamentos as $p){
-            $html.='<tr>
-                <td>'.$p['updated_at'].'</td>
-                <td>'.$p['cliente'].'</td>
-                <td>'.$p['veiculo'].'</td>
-                <td>'.$p['referencia'].'</td>
-                <td>R$ '.number_format($p['total'],2,',','.').'</td>
-            </tr>';
-            }
-            echo $html;
-            @endphp
             
-        </table>
-    </div>
+            foreach ($pagamentos as $p) {
+                echo "<tr>
+                            <td>$p->updated_at</td>
+                            <td style='width:200px'>$p->cliente</td>
+                            <td>$p->veiculo</td>
+                            <td>$p->referencia</td>
+                            <td style='width:100px'>R$ $p->total</td>
+                        </tr>";
+            }
+            
+        @endphp
 
-    <div>
-        
-    </div>
+        <tr>
+            <td style="border-top: 1px solid black" colspan='4'>TOTAL</td>
+            <td style="border-top: 1px solid black;">R$ {{$total}}</td>
+        </tr>
+
+    </table>
 
 </body>
 

@@ -62,7 +62,7 @@ class VendaController extends Controller
             $pagar->save();
         }
 
-        //Veiculo::findOrFail($id)->delete();
+        Veiculo::findOrFail($id)->delete();
 
         
 

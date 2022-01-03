@@ -15,27 +15,24 @@
     td {
         padding-right: 10px;
         padding-bottom: 5px;
-        text-transform: uppercase;
     }
 
     .entradas {
+        border: 1px solid black;
         margin: auto;
         padding: 10px;
-        border-bottom: 1px solid black;
-        border-top: 1px solid black;
 
     }
-
 </style>
 
 <body>
     <div class="center">
         <h2>RELATÓRIO</h2>
-        <h4 style="text-transform:uppercase">{{ $hoje }} DE {{ date('Y') }}</h4>
+        <h4>03 DE JANEIRO DE 2021</h4>
     </div>
 
     <table class="entradas">
-        <tr>
+        <tr >
             <td style="border-bottom: 1px solid black;" colspan='5'>ENTRADAS</td>
         </tr>
         <tr class="cabecalho">
@@ -45,25 +42,14 @@
             <td>REFERENCIA</td>
             <td>VALOR</td>
         </tr>
-
-        @php
-            
-            foreach ($pagamentos as $p) {
-                echo "<tr>
-                            <td>$p->updated_at</td>
-                            <td style='width:200px'>$p->cliente</td>
-                            <td>$p->veiculo</td>
-                            <td>$p->referencia</td>
-                            <td style='width:100px'>R$ $p->total</td>
-                        </tr>";
-            }
-            
-        @endphp
-
         <tr>
-            <td style="border-top: 1px solid black" colspan='4'>TOTAL</td>
-            <td style="border-top: 1px solid black;">R$ {{$total}}</td>
+            <td>01/01/2022</td>
+            <td>ANDRE VERAS</td>
+            <td>HONDA BROZ 150 ESD</td>
+            <td>PARCELA 2</td>
+            <td>R$ 450,00</td>
         </tr>
+
 
     </table>
 

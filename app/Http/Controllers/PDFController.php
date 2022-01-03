@@ -29,14 +29,14 @@ class PDFController extends Controller
     $hojeF = date('Y-m-d') . " 23:59:59";
     $mesI = date('Y-m') . '-01 00:00:00';
 
-    $pagamentos = Pagamento::where('updated_at', '>', $hojeI)->where('updated_at', '<', $hojeF)->get();
+    $pagamentos = Pagamento::where('updated_at', '>', $hojeI)->where('updated_at', '<', $hojeF)->where('user_id',$_SESSION['id'])->get();
     $responsavel = 'André Veras';
 
-    $total = number_format(Pagamento::where('updated_at', '>', $hojeI)->where('updated_at', '<', $hojeF)->sum('total'), 2, ',', '.');
+    $total = number_format(Pagamento::where('user_id',$_SESSION['id'])->where('updated_at', '>', $hojeI)->where('updated_at', '<', $hojeF)->sum('total'), 2, ',', '.');
     $entradas = Pagamento::where('updated_at', '>', $hojeI)->where('updated_at', '<', $hojeF)->count();
     
     $pdf = App::make('dompdf.wrapper');
-    $pdf->loadHTML(view('PDF.entradas', ['pagamentos' => $pagamentos, 'total' => $total, 'entradas' => $entradas,'hoje'=>$hoje,'responsavel'=>$responsavel]))->setPaper('A4', 'landscape');
+    $pdf->loadHTML(view('PDF.entradas', ['pagamentos' => $pagamentos, 'total' => $total, 'entradas' => $entradas,'hoje'=>$hoje,'responsavel'=>$responsavel]))->setPaper('A4', 'portrait');
     return $pdf->stream($hoje.' de '.date('Y').'.pdf',['Attachment'=>false]);
     //return view('PDF.entradas', ['pagamentos' => $pagamentos, 'total' => $total, 'entradas' => $entradas,'hoje'=>$hoje,'responsavel'=>$responsavel]);
   }
