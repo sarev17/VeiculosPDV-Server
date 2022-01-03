@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Venda;
 use App\Models\Veiculo;
 use App\Models\Pagamento;
+use Illuminate\Support\Facades\App;
 
 class VendaController extends Controller
 {
@@ -14,7 +15,7 @@ class VendaController extends Controller
         date_default_timezone_set("America/Sao_Paulo");
         $venda = new Venda;
 
-        $id_veiculo = array(Veiculo::where('user_id',$_SESSION['id'])->where('placa', $request->placa)->select('id')->get());
+        $id_veiculo = array(Veiculo::where('user_id', $_SESSION['id'])->where('placa', $request->placa)->select('id')->get());
         $id = $id_veiculo[0][0]['id'];
 
         $entrada = floatval(preg_replace('/\D/', '', $request->entrada)) / 100;
@@ -61,10 +62,11 @@ class VendaController extends Controller
             $pagar->save();
         }
 
-        Veiculo::findOrFail($id)->delete();
-        echo '<script>alert("Venda Realizada!")</script>';
-        return redirect()->route('principal');
-        //*/
+        //Veiculo::findOrFail($id)->delete();
+
+        
+
+        return redirect()->route('pdf.contrato',['id_venda'=>$venda->id]);
 
     }
 
@@ -72,7 +74,7 @@ class VendaController extends Controller
     { {
             //return $dataTable->render('telas.dados.estoque');
             //$produtos = Veiculo::orderby('id', 'desc')->paginate();
-            $produtos = Venda::where('user_id',$_SESSION['id'])->get();
+            $produtos = Venda::where('user_id', $_SESSION['id'])->get();
             return view('telas.dados.vendas', ['produtos' => $produtos]);
         }
     }
@@ -82,7 +84,7 @@ class VendaController extends Controller
     {
         $dados = explode('d', key($_REQUEST));
 
-        $dados = Venda::where('user_id',$_SESSION['id'])->whereBetween('created', array($dados[1], $dados[0]))->get();
+        $dados = Venda::where('user_id', $_SESSION['id'])->whereBetween('created', array($dados[1], $dados[0]))->get();
 
         return view('telas.dados.vendas', ['produtos' => $dados]);
     }

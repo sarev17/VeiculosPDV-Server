@@ -30,7 +30,7 @@
                     <h2 class="u-align-center u-custom-font u-font-montserrat u-text u-text-1">Venda de Veículo</h2>
                     <div class="u-align-center u-form u-form-1">
 
-                        <form action="{{ route('venda.salvar') }}" method="post">
+                        <form id="formVenda" target="_blank" action="{{ route('venda.salvar') }}" method="post">
                             @csrf
                             @include('_partials.formulario_venda')
                             <button type="button" class="btn btn-primary" data-toggle="modal"

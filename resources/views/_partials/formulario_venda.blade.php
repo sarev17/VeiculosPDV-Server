@@ -2,15 +2,15 @@
 
 
 @php
-    use App\Models\Veiculo;
-    $placa = Veiculo::where('id', key($_REQUEST))
-        ->select('placa')
-        ->get();
-    if (isset($placa[0]['placa'])) {
-        $p = $placa[0]['placa'];
-    } else {
-        $p = '';
-    }
+use App\Models\Veiculo;
+$placa = Veiculo::where('id', key($_REQUEST))
+    ->select('placa')
+    ->get();
+if (isset($placa[0]['placa'])) {
+    $p = $placa[0]['placa'];
+} else {
+    $p = '';
+}
 @endphp
 
 <hr>
@@ -181,7 +181,7 @@
 
             <!--Footer-->
             <div class="modal-footer flex-center">
-                <button type="submit" class="btn btn-primary">Salvar</button>
+                <a target="_blank"><button id="btnVenda" type="submit" class="btn btn-primary">Salvar</button></a>
                 <a type="button" class="btn btn-outline-info waves-effect" data-dismiss="modal">No</a>
             </div>
         </div>
@@ -191,6 +191,20 @@
 <!--Modal: modalPush-->
 <hr>
 
+<script>
+    document.addEventListener("keydown", function(e) {
+        if (e.keyCode === 13) {
+
+            e.preventDefault();
+
+        }
+    });
+    $('#btnVenda').click(function() {
+        $('#formVenda').submit();
+        $('#formVenda')[0].reset();
+        window.location.href = "{{ route('principal') }}"
+    })
+</script>
 
 <script>
     placa();

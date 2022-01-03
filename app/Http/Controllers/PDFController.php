@@ -6,6 +6,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Pagamento;
 use App\Models\Veiculo;
+use App\Models\Venda;
 use Illuminate\Support\Facades\App;
 
 class PDFController extends Controller
@@ -69,6 +70,16 @@ class PDFController extends Controller
     $pdf->loadHTML(view('PDF.entradas_mes', ['img'=>$imgL,'pagamentos' => $pagamentos, 'total' => $total, 'entradas' => $entradas,'hoje'=>$hoje,'responsavel'=>$responsavel]))->setPaper('A4', 'landscape');
     return $pdf->stream($mes[$numero_mes].' '.date('Y').'.pdf',['Attachment'=>false]);
     //return view('PDF.entradas', ['pagamentos' => $pagamentos, 'total' => $total, 'entradas' => $entradas,'hoje'=>$hoje,'responsavel'=>$responsavel]);
+  }
+
+  public function contrato($r)
+  {
+    $venda = Venda::find($r);
+
+    
+    $pdf = App::make('dompdf.wrapper');
+        $pdf->loadHTML(view('PDF.contrato', ['r'=>$venda]))->setPaper('A4', 'portrait');
+       return $pdf->stream('Contrato ' . $venda->cliente .'-'. $venda->placa.'.pdf', ['Attachment' => false]);
   }
 
 }
