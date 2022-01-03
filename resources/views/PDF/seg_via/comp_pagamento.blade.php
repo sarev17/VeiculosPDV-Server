@@ -83,7 +83,7 @@ $u = Info::where('user_id',$_SESSION['id'])->get()->first();
 <div class="center">
     @php
         $qrCodeNome = 'Comprovante_ID_pagamento.png';
-        QRcode::png('http://31.220.31.42/qr_pagamento/'.$p->idv, $qrCodeNome);
+        QRcode::png('http://31.220.31.42/qr_pagamento/'.$p->id, $qrCodeNome);
         echo '<img width=80px src=' . $qrCodeNome . '>';
     @endphp
 </div>
