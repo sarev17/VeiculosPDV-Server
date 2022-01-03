@@ -91,7 +91,7 @@ class PagamentoController extends Controller
 
     public function busca_qr(Venda $id)
     {
-        $pagamentos = Pagamento::where('user_id',$_SESSION['id'])->where('venda_id', '=', $id->id)->get();
+        $pagamentos = Pagamento::where('venda_id', '=', $id->id)->get();
 
         $pdf = App::make('dompdf.wrapper');
         $pdf->loadHTML(view('comprovantes.pagamento', ['produtos' => $pagamentos]))->setPaper('A4', 'portrait');
