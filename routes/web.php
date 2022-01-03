@@ -84,6 +84,7 @@ Route::middleware(['autenticacao:padrao,administrador'])->prefix('/acesso')->gro
         Route::get('diaE', [PDFController::class, 'diaE'])->name('pdf.diaE');
         Route::get('MesE', [PDFController::class, 'mesE'])->name('pdf.mesE');
         Route::get('contrato/{id_venda}', [PDFController::class, 'contrato'])->name('pdf.contrato');
+        Route::get('segundaE/{id_pagamento}', [PDFController::class, 'segunda_via_entrada'])->name('pdf.segundaE');
     });
 
     Route::get('qr_pagamento/{id}', [PagamentoController::class, 'busca_qr']);

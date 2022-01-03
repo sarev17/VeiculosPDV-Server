@@ -21,6 +21,7 @@
                             <th>Referencia</th>
                             <th>Valor</th>
                             <th>Data Pagamento</th>
+                            <th>2ª via</th>
 
 
 
@@ -39,6 +40,12 @@
                                 <td>{{ $produto->referencia }}</td>
                                 <td>R$ {{ $valor }}</td>
                                 <td>{{ $produto->created_at }}</td>
+
+                                <td>
+                                    <a target="_blank" href="{{route('pdf.segundaE',$produto->id)}}">
+                                        <i class="fas fa-print text-danger"></i>
+                                    </a>
+                                </td>
 
 
                                 @include('_partials.btn_datatable')

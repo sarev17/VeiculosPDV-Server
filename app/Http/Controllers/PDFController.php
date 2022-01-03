@@ -82,4 +82,13 @@ class PDFController extends Controller
        return $pdf->stream('Contrato ' . $venda->cliente .'-'. $venda->placa.'.pdf', ['Attachment' => false]);
   }
 
+  public function segunda_via_entrada($id)
+  {
+    $pagamento = Pagamento::find($id);
+    $pdf = App::make('dompdf.wrapper');
+    $pdf->loadHTML(view('PDF.seg_via.comp_pagamento', ['p' => $pagamento,]))->setPaper('A4', 'portrait');
+    return $pdf->stream('Segunda via '.$pagamento->veiculo.' '.$pagamento->referencia.'.pdf',['Attachment'=>false]);
+
+  }
+
 }
