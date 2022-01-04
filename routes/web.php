@@ -96,5 +96,5 @@ Route::middleware(['autenticacao:padrao,administrador'])->prefix('/acesso')->gro
 
 Route::get('qr_pagamento/{id}', [PagamentoController::class, 'busca_qr']);
 Route::get('login/{erro?}', [LoginController::class, 'index'])->name('login');
-Route::gpost('login', [LoginController::class, 'autenticar'])->name('login_autenticar');
+Route::post('login', [LoginController::class, 'autenticar'])->name('login_autenticar');
 Route::get('/', [LoginController::class, 'index']);
