@@ -51,31 +51,32 @@ class ProdutoController extends Controller
         return redirect()->route('veiculos');
     }
 
-    public function edit_placa()
-    {
-        return $_REQUEST;
-    }
-    
     public function edit(Request $request, Veiculo $veiculo)
     {
 
         date_default_timezone_set ("America/Sao_Paulo");
-        Veiculo::where('placa', '=', $request->placa)->update([
-
-            'placa' => $request->placa,
-            'produto' => $request->produto,
-            'modelo' => $request->modelo,
-            'marca' => $request->marca,
-            'exercicio' => $request->exercicio,
-            'cor' => $request->cor,
-            'renavam' => $request->renavam,
-            'fabricacao' => $request->fabricacao,
+        
+        $v = Veiculo::where('id', $request->id)->get();
+        
+        Veiculo::where('id', $request->id)->update([
+            'placa' => strtoupper($request->placa),
+            'produto' => strtoupper($request->produto),
+            'modelo' => strtoupper($request->modelo),
+            'marca' => strtoupper($request->marca),
+            'exercicio' => strtoupper($request->exercicio),
+            'cor' => strtoupper($request->cor),
+            'renavam' => strtoupper($request->renavam),
+            'fabricacao' => strtoupper($request->fabricacao),
             'compra' => floatval(preg_replace("/[^0-9]/", "", $request->compra)) / 100,
             'venda' => floatval(preg_replace("/[^0-9]/", "", $request->venda)) / 100,
             'obs' => $request->obs,
             'updated_at'=> date('Y-m-d H:i:s')
         ]);
 
+    
         return redirect()->route('veiculos');
     }
+
+    
+
 }

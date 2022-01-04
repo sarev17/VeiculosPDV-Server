@@ -20,8 +20,8 @@ if (isset($valores[0]['valores'][4])) {
 } else {
     if (isset($valores[0]['valores'][3])) {
 
-        $busca = Venda::where('user_id',$_SESSION['id'])->where($coluna, 'like', '%' . $dado . '%')->get();
-        echo json_encode($busca);
+        $busca = Venda::where('user_id',$_SESSION['id'])->where($coluna, 'like', '%' . $dado . '%')->get()->toJson();
+        echo $busca;
     } else {
         if ($model == 'Veiculo') {
             $busca = array(Veiculo::where('user_id',$_SESSION['id'])->where($coluna, $dado)->get());

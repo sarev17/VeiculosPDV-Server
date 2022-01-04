@@ -76,6 +76,10 @@
 <div class='label-float row'>
     <textarea value="{{strtolower($v[0][0]['obs'])}}" name="obs" id="obs" cols="1" label-float rows="2" class="txarea"></textarea>
 </div>
+
+<input type="hidden" id="id" name="id" value="{{key($_GET)}}">
+
+
 <br>
 
 <script>

@@ -78,7 +78,7 @@ class PagamentoController extends Controller
     { {
             //return $dataTable->render('telas.dados.estoque');
             //$produtos = Veiculo::orderby('id', 'desc')->paginate();
-            $produtos = Pagamento::where('user_id',$_SESSION['id'])->get();
+            $produtos = Pagamento::orderBy('updated_at','desc')->where('user_id',$_SESSION['id'])->get();
             return view('telas.dados.entradas', ['produtos' => $produtos]);
         }
     }

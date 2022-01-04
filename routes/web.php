@@ -91,9 +91,10 @@ Route::middleware(['autenticacao:padrao,administrador'])->prefix('/acesso')->gro
     Route::post('juros', [LoginController::class, 'juros'])->name('juros');
     Route::post('novo_user', [LoginController::class, 'novo_user'])->name('novo_user');
     Route::get('logout', [LoginController::class, 'logout'])->name('logout');
+
 });
 
 Route::get('qr_pagamento/{id}', [PagamentoController::class, 'busca_qr']);
 Route::get('login/{erro?}', [LoginController::class, 'index'])->name('login');
-Route::post('login', [LoginController::class, 'autenticar'])->name('login_autenticar');
+Route::gpost('login', [LoginController::class, 'autenticar'])->name('login_autenticar');
 Route::get('/', [LoginController::class, 'index']);
