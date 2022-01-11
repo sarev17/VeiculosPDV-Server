@@ -26,10 +26,11 @@ class VendaController extends Controller
         $mensalidade = floatval(preg_replace('/\D/', '', $request->parcela)) / 100;
         $total = floatval(preg_replace('/\D/', '', $request->total)) / 100;
 
+        $nome = preg_replace(array("/(á|à|ã|â|ä)/","/(Á|À|Ã|Â|Ä)/","/(é|è|ê|ë)/","/(É|È|Ê|Ë)/","/(í|ì|î|ï)/","/(Í|Ì|Î|Ï)/","/(ó|ò|õ|ô|ö)/","/(Ó|Ò|Õ|Ô|Ö)/","/(ú|ù|û|ü)/","/(Ú|Ù|Û|Ü)/","/(ñ)/","/(Ñ)/"),explode(" ","a A e E i I o O u U n N"),$request->cliente);
 
         $venda->vencimento = $request->vencimento;
         $venda->user_id = $_SESSION['id'];
-        $venda->cliente = strtoupper(tirarAcentos($request->cliente));
+        $venda->cliente = strtoupper(tirarAcentos($nome));
         $venda->cpf = $request->cpf;
         $venda->cep = $request->cep;
         $venda->endereco = $request->rua . ', ' . $request->numero . ', ' . $request->bairro . ', ' . $request->cidade . '-' . $request->estado;
