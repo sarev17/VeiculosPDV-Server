@@ -34,7 +34,7 @@ class PDFController extends Controller
     $responsavel = 'André Veras';
 
     //$total = number_format(Pagamento::where('user_id',$_SESSION['id'])->where('updated_at', '>', $hojeI)->where('updated_at', '<', $hojeF)->sum('total'), 2, ',', '.');
-    $total = number_format(Pagamento::whereYear('updated_at',date('Y'))->whereMonth('updated_at',date('m'))->whereDay('updated_at',date('d'))->sum(),2,',','.');
+    $total = number_format((Pagamento::whereYear('updated_at',date('Y'))->whereMonth('updated_at',date('m'))->whereDay('updated_at',date('d'))->sum('total')),2,',','.');
     $entradas = Pagamento::where('updated_at', '>', $hojeI)->where('updated_at', '<', $hojeF)->count();
     
     $pdf = App::make('dompdf.wrapper');

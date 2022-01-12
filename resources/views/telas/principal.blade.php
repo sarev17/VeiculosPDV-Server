@@ -67,7 +67,8 @@
                             <h4 class="u-text u-text-white u-text-7">Simular<br>
                             </h4><span
                                 class="u-file-icon u-hover-feature u-icon u-icon-rectangle u-opacity u-opacity-55 u-text-black u-icon-5"
-                                data-href="https://nicepage.com"><img src="{{asset('images/67710')}}9.png" alt=""></span>
+                                ><img src="{{asset('images/67710')}}9.png" alt=""></span>
+                                <span style="color:white">Em breve</span>
                         </div>
                     </div>
                     <div
