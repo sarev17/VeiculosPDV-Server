@@ -30,7 +30,7 @@ class VendaController extends Controller
 
         $venda->vencimento = $request->vencimento;
         $venda->user_id = $_SESSION['id'];
-        $venda->cliente = strtoupper(tirarAcentos($nome));
+        $venda->cliente = strtoupper($nome);
         $venda->cpf = $request->cpf;
         $venda->cep = $request->cep;
         $venda->endereco = $request->rua . ', ' . $request->numero . ', ' . $request->bairro . ', ' . $request->cidade . '-' . $request->estado;
