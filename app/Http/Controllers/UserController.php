@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Veiculo;
+use App\Models\User;
 use Illuminate\Http\Request;
 
-class ProdutoController extends Controller
+class UserController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,8 +14,8 @@ class ProdutoController extends Controller
      */
     public function index()
     {
-        $produtos = Veiculo::where('user_id',$_SESSION['id'])->get();
-        return view('telas.dados.estoque', ['produtos' => $produtos]);   
+           $user = User::where('nivel','<>','administrador')->get();
+           return view('telas.dados.usuarios',['usuarios' => $user]); 
     }
 
     /**
@@ -42,10 +42,10 @@ class ProdutoController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Veiculo  $veiculo
+     * @param  \App\Models\User  $user
      * @return \Illuminate\Http\Response
      */
-    public function show(Veiculo $veiculo)
+    public function show(User $user)
     {
         //
     }
@@ -53,36 +53,54 @@ class ProdutoController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Veiculo  $veiculo
+     * @param  \App\Models\User  $user
      * @return \Illuminate\Http\Response
      */
-    public function edit(Veiculo $veiculo)
+    public function edit(User $user)
     {
-        //
+
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Veiculo  $veiculo
+     * @param  \App\Models\User  $user
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Veiculo $veiculo)
+    public function update(Request $request, User $usuario)
     {
-        Veiculo::find($veiculo->id)->update($request->all());
-        return redirect()->route('veiculos.index');
+        
+        $usuario->update(['validade'=>$request['venc']]);
+
+        return redirect()->route('usuarios.index');
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Veiculo  $veiculo
+     * @param  \App\Models\User  $user
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Veiculo $veiculo)
+    public function destroy(User $user)
     {
-        $veiculo->delete();
-        return redirect()->route('veiculos.index');
+        //
     }
+
+    public function ban(){
+
+        date_default_timezone_set ("America/Sao_Paulo");
+        
+        if($_GET['status']=='inativo'){
+            User::where('id',$_GET['user'])->update(['status'=> 'inativo']);
+        }else{
+            User::where('id',$_GET['user'])->update(['status'=> 'ativo']);
+        }
+
+        return redirect()->route('usuarios.index');
+
+
+    }
+
+   
 }

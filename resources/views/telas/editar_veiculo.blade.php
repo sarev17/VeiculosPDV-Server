@@ -28,9 +28,15 @@
                 <div class="u-container-layout u-container-layout-1">
                     <h2 class="u-align-center u-custom-font u-font-montserrat u-text u-text-1">Cadastrar Veículo</h2>
                     
+                    @php
+                        use App\Models\Veiculo;
+                        $veiculo = Veiculo::where('id',key($_GET))->get()->first();
+                    @endphp
+
                     <div class="u-align-center u-form u-form-1">
-                        <form action="{{route('veiculo.edit')}}" method="post">
+                        <form action="{{route('veiculos.update',['veiculo'=>$veiculo])}}" method="post">
                             @csrf
+                            @method('PUT')
                             @include('_partials.formulario_editar')
                             @include('_partials.js')
                         <button type="submit" class="btn btn-primary">Salvar</button>

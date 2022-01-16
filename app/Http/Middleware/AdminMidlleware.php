@@ -5,7 +5,7 @@ namespace App\Http\Middleware;
 use Closure;
 use Illuminate\Http\Request;
 
-class AutenticacaoMiddleware
+class AdminMidlleware
 {
     /**
      * Handle an incoming request.
@@ -14,14 +14,13 @@ class AutenticacaoMiddleware
      * @param  \Closure(\Illuminate\Http\Request): (\Illuminate\Http\Response|\Illuminate\Http\RedirectResponse)  $next
      * @return \Illuminate\Http\Response|\Illuminate\Http\RedirectResponse
      */
-    public function handle(Request $request, Closure $next, $metodo_autenticacao, $perfil)
+    public function handle(Request $request, Closure $next)
     {
-        session_start();
-
-        if(isset($_SESSION['name']) && $_SESSION['name'] != ''){
+        if ($_SESSION['nivel'] == 'administrador'){
             return $next($request);
         }else{
-            return redirect(route('login',['erro'=>2]));
+            redirect(route('principal'));
         }
+
     }
 }

@@ -22,6 +22,6 @@
     </div>
     </div>
     <div class="text-center" style="background-color: #333; padding: 20px;" >
-      &copy {{date('Y')}} Copyright: 
+      &copy {{date('Y')}} Copyright
     </div>
   </footer>

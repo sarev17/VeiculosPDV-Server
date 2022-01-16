@@ -61,12 +61,12 @@
         <label for="placa">ANO FAB.</label>    
 </div>
 <div class='label-float row'>
-    <input required onblur="moeda('compra',this.value)" onkeyup="moeda('compra',this.value)" type="text" name="compra" id="compra" class="entrada entrada-g"
+    <input required type="text" name="compra" id="compra" class="entrada entrada-g"
         placeholder="VALOR DE COMPRA" value="{{strtolower($v[0][0]['compra'])}}">
         <label for="placa">VALOR DE COMPRA</label>    
 </div>
 <div class='label-float row'>
-    <input required onblur="moeda('venda',this.value)" onkeyup="moeda('venda',this.value)" type="text" name="venda" id="venda" class="entrada entrada-g"
+    <input required type="text" name="venda" id="venda" class="entrada entrada-g"
         placeholder="VALOR DE VENDA" value="{{strtolower($v[0][0]['venda'])}}">
         <label for="placa">VALOR DE VENDA</label>    
 </div>

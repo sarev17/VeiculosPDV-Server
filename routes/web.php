@@ -6,6 +6,7 @@ use App\Http\Controllers\VendaController;
 use App\Http\Controllers\PagamentoController;
 use App\Http\Controllers\PDFController;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\UserController;
 use App\Http\Middleware\LogAcessoMiddleware;
 use Illuminate\Routing\RouteGroup;
 
@@ -23,6 +24,9 @@ use Illuminate\Routing\RouteGroup;
 Route::middleware(['autenticacao:padrao,administrador'])->prefix('/acesso')->group(function () {
 
     Route::get('/', [LoginController::class, 'principal'])->name('principal');
+
+    Route::resource('veiculos', ProdutoController::class);
+
     Route::post('venda_confirmar', function () {
         return view('telas.Venda_confirmar');
     })->name('venda_confirmar');
@@ -38,7 +42,6 @@ Route::middleware(['autenticacao:padrao,administrador'])->prefix('/acesso')->gro
     Route::post('busca_placa', function () {
         return view('func.busca_placa');
     });
-
     Route::post('busca_veiculo', function () {
         return view('func.preenche_veiculo');
     });
@@ -48,11 +51,10 @@ Route::middleware(['autenticacao:padrao,administrador'])->prefix('/acesso')->gro
     Route::post('busca_cliente', function () {
         return view('func.busca_cliente');
     });
-    Route::match(['get', 'post'], 'form', [ProdutoController::class, 'store'])->name('form.salvar');
     Route::post('venda', [VendaController::class, 'store'])->name('venda.salvar');
     Route::post('pagar', [PagamentoController::class, 'store'])->name('pagamento.salvar');
     Route::get('teste', function () {
-        return view('telas.teste');
+        return view('telas.pix');
     });
     Route::get('pagamento', function () {
         return view('telas.Pagamento');
@@ -67,18 +69,17 @@ Route::middleware(['autenticacao:padrao,administrador'])->prefix('/acesso')->gro
         Route::get('estoque', function () {
             return view('telas.dados.estoque');
         })->name('estoque');
-        Route::get('veiculos', [ProdutoController::class, 'listar'])->name('veiculos');
         Route::get('vendas', [VendaController::class, 'listar'])->name('vendas');
         Route::get('entradas', [PagamentoController::class, 'listar'])->name('entradas');
-        Route::get('veiculo/delete/{id}', [ProdutoController::class, 'delete'])->name('veiculo.delete');
-        Route::post('veiculo/edit', [ProdutoController::class, 'edit'])->name('veiculo.edit');
         Route::get('entradas/date', [PagamentoController::class, 'date'])->name('entradas.date');
 
+        Route::middleware(['admin'])->prefix('/admin')->group(function () {
+            Route::resource('usuarios',UserController::class);
+            Route::get('usuarios.ban',[UserController::class,'ban'])->name('usuarios.ban');
+        });        
         Route::get('editar_veiculo', function () {
             return view('telas.editar_veiculo');
         })->name('editar_veiculo');
-
-        Route::get('editar_placa/{placa}', [ProdutoController::class, 'edit_placa']);
     });
     Route::prefix('PDF')->group(function () {
         Route::get('diaE', [PDFController::class, 'diaE'])->name('pdf.diaE');
@@ -86,6 +87,10 @@ Route::middleware(['autenticacao:padrao,administrador'])->prefix('/acesso')->gro
         Route::get('contrato/{id_venda}', [PDFController::class, 'contrato'])->name('pdf.contrato');
         Route::get('segundaE/{id_pagamento}', [PDFController::class, 'segunda_via_entrada'])->name('pdf.segundaE');
     });
+
+    Route::get('pix', function () {
+        return view('telas.pix');
+    })->name('pix');;
 
     Route::post('info', [LoginController::class, 'info'])->name('info');
     Route::post('juros', [LoginController::class, 'juros'])->name('juros');

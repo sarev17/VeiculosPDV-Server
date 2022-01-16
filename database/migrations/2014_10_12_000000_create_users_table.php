@@ -20,6 +20,8 @@ class CreateUsersTable extends Migration
             $table->enum('nivel',['funcionario','administrador','gerente']); //administrador,gerente,funcionario
             $table->rememberToken();
             $table->date('validade');
+            $table->float('mensalidade',4,2)->default(50);
+            $table->enum('status',['ativo','inativo'])->default('ativo');
             $table->timestamps();
         });
     }

@@ -60,6 +60,7 @@ class LoginController extends Controller
             $_SESSION['nivel'] = $usuario->nivel;
             $_SESSION['id'] = $usuario->id;
             $_SESSION['validade'] = $usuario->validade;
+            $_SESSION['mensalidade'] = $usuario->mensalidade;
             $_SESSION['taxa_juros'] = $juros->taxa;
             $_SESSION['forma_juros'] = $juros->forma;
 

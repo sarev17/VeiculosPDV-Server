@@ -44,13 +44,17 @@
                                 <td>R$ {{ $valor }}</td>
 
                                 <td>
-
-                                    <a href="{{ route('vender', $produto->id) }}"><i
-                                            class="fas fa-shopping-cart"></i></a>
-                                    <a href="{{ route('editar_veiculo', $produto) }}"><i
-                                            class="fas fa-edit text-info mr-1"></i></a>
-                                    <a href="{{ route('veiculo.delete', $produto->id) }}"><i
-                                            class="fas fa-trash text-danger mr-1"></i></a>
+                                    <form id="form{{$produto->id}}" method="post" action="{{route('veiculos.destroy',['veiculo'=>$produto])}}">
+                                        <a href="{{ route('vender', $produto->id) }}"><i
+                                                class="fas fa-shopping-cart"></i></a>
+                                        <a href="{{ route('editar_veiculo', $produto) }}"><i
+                                                class="fas fa-edit text-info mr-1"></i></a>
+                                            
+                                        @csrf
+                                        @method('DELETE')
+                                        <a href="javascript:$('#form{{$produto->id}}').submit();"><i
+                                                class="fas fa-trash text-danger mr-1"></i></a>
+                                    </form>
                                 </td>
 
                             </tr>
